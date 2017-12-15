@@ -1,14 +1,14 @@
 package edu.mum.cs544.model;
 
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Student extends Person {
 
     private String studentId;
 
-    @ManyToOne
+    @OneToOne(mappedBy = "student")
     private Room room;
     //Constructor
     public Student() {
