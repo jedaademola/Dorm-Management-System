@@ -1,10 +1,7 @@
 package edu.mum.cs544.model;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -15,6 +12,8 @@ public class Building {
     private String buildingNo;
     @OneToMany(mappedBy = "building")
     private List<Room> rooms;
+    @OneToOne(mappedBy = "building")
+    private ResidenceAdvisor RA;
 
     //Constructor
     public Building() {
