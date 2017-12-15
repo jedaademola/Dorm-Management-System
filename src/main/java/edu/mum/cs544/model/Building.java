@@ -13,7 +13,7 @@ public class Building {
     @OneToMany(mappedBy = "building")
     private List<Room> rooms;
     @OneToOne(mappedBy = "building")
-    private ResidenceAdvisor RA;
+    private ResidenceAdvisor ra;
 
     //Constructor
     public Building() {

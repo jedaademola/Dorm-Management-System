@@ -11,7 +11,7 @@ public class Room {
     private long id;
     private String roomNo;
     @OneToOne
-    @JoinColumn(name = "student_id")
+    @JoinColumn(name = "studentId")
     private Student student;
     @ManyToOne
     private Building building;

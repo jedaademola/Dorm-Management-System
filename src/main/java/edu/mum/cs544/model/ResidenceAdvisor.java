@@ -6,9 +6,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
 @Entity
-public class ResidenceAdvisor {
+public class ResidenceAdvisor extends Person {
     private String raId;
     @OneToOne
-    @JoinColumn(name = "building_no")
+    @JoinColumn(name = "buildingNo")
     private Building building;
 }

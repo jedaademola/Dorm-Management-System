@@ -11,13 +11,13 @@ import java.util.List;
 public class Admin extends Person {
     private String staffId;
     @OneToMany
-    @JoinColumn(name = "Student_id")
+    @JoinColumn(name = "StudentId")
     private List<Student> students = new ArrayList<Student>();
     @OneToMany
-    @JoinColumn(name = "building_id")
+    @JoinColumn(name = "buildingId")
     private List<Building> buildings = new ArrayList<Building>();
     @OneToMany
-    @JoinColumn(name = "room_id")
+    @JoinColumn(name = "roomId")
     private List<Room> rooms = new ArrayList<Room>();
 
 
@@ -58,4 +58,6 @@ public class Admin extends Person {
     public void setRooms(List<Room> rooms) {
         this.rooms = rooms;
     }
+
+
 }
