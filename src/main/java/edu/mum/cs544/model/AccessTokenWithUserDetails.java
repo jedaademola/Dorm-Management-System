@@ -1,0 +1,68 @@
+package edu.mum.cs544.model;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.io.Serializable;
+import java.sql.Timestamp;
+
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class AccessTokenWithUserDetails implements Serializable {
+
+    @JsonProperty("accessToken")
+    private String accessToken;
+
+
+    @JsonProperty("phoneNumber")
+    private String phoneNumber;
+
+    @JsonProperty("email")
+    private String email;
+
+
+    @JsonProperty("lastName")
+    private String lastName;
+
+    @JsonProperty("firstName")
+    private String firstName;
+
+    //   @JsonSerialize(using = CustomDateSerializer.class)
+    @JsonProperty("lastLogin")
+    private Timestamp lastLogin;
+
+
+    @JsonProperty("passwordExpirationDaysRemaining")
+    private int passwordExpirationDaysRemaining;
+
+    // @JsonSerialize(using = CustomDateSerializer.class)
+    @JsonProperty("failedLoginDate")
+    private Timestamp failedLoginDate;
+
+    //  @JsonSerialize(using = CustomDateSerializer.class)
+    @JsonProperty("passwordChangedOn")
+    private Timestamp passwordChangedOn;
+
+
+    //  @JsonProperty("userCategory")
+    // private UserCategory category;
+
+
+    public AccessTokenWithUserDetails(String token, User user) {
+        this.accessToken = token;
+
+        this.email = user.getEmail();
+        //  this.category = user.getCategory();
+
+        this.phoneNumber = user.getPhoneNumber();
+        this.firstName = user.getFirstName();
+        this.lastName = user.getLastName();
+        //this.failedLoginDate = user.getFailedLoginDate();
+        //this.lastLogin = user.getLastLogin();
+        //this.passwordChangedOn = user.getPasswordChangedOn();
+        this.passwordExpirationDaysRemaining = user.getPasswordExpirationDaysRemaining();
+
+
+    }
+
+}

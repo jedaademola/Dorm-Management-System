@@ -1,0 +1,3 @@
+{
+  "version": "${APP_VERSION}.${BUILD_NUMBER}"
+}
