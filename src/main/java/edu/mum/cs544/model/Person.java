@@ -14,6 +14,7 @@ public abstract class Person implements Serializable {
     private String fname;
     private String lname;
     private String email;
+    private String pword;
 
     public long getId() {
         return id;
