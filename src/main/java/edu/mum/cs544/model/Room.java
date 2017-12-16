@@ -1,3 +1,7 @@
+
+
+
+
 package edu.mum.cs544.model;
 
 
@@ -15,6 +19,10 @@ public class Room {
     private Student student;
     @ManyToOne
     private Building building;
+
+    @ManyToOne
+    @JoinColumn(name="adminId")
+    private Admin admin;
 
     //Constructor
     public Room() {
@@ -51,5 +59,13 @@ public class Room {
 
     public void setBuilding(Building building) {
         this.building = building;
+    }
+
+    public Admin getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(Admin admin) {
+        this.admin = admin;
     }
 }

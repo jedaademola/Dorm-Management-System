@@ -1,3 +1,4 @@
+
 package edu.mum.cs544.model;
 
 
@@ -11,4 +12,27 @@ public class ResidenceAdvisor extends Person {
     @OneToOne
     @JoinColumn(name = "buildingNo")
     private Building building;
+
+    public ResidenceAdvisor() {
+    }
+
+    //Getters and Setters
+
+    public String getRaId() {
+        return raId;
+    }
+
+    public void setRaId(String raId) {
+        this.raId = raId;
+    }
+
+    public Building getBuilding() {
+        return building;
+    }
+
+    public void setBuilding(Building building) {
+        this.building = building;
+    }
+
 }
+

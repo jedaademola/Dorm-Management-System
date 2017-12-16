@@ -1,12 +1,11 @@
 package edu.mum.cs544.model;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Person implements Serializable {
 
     @Id
@@ -48,3 +47,5 @@ public abstract class Person implements Serializable {
         this.email = email;
     }
 }
+
+
