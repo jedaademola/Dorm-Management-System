@@ -12,12 +12,27 @@ public class DashboardController {
 
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
+    public ModelAndView login() {
+        ModelAndView model = new ModelAndView();
+        model.setViewName("login");
+        return model;
+    }
+
+
+    @RequestMapping(value = "/index", method = RequestMethod.GET)
     public ModelAndView index() {
         ModelAndView model = new ModelAndView();
         model.setViewName("index");
         return model;
     }
 
+
+    @RequestMapping(value = "/studentForm", method = RequestMethod.GET)
+    public ModelAndView studentForm() {
+        ModelAndView model = new ModelAndView();
+        model.setViewName("forms");
+        return model;
+    }
 
     @RequestMapping(value = "/series", method = RequestMethod.GET)
     public ModelAndView series() {
