@@ -1,6 +1,7 @@
 package edu.mum.cs544.model;
 
 import javax.persistence.CascadeType;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import java.io.Serializable;
 import java.util.Date;
@@ -9,11 +10,16 @@ public class RoomApplication implements Serializable {
 
     private long applicationId;
 
+   @ManyToOne(cascade = CascadeType.ALL)
+    private Student studentNo;
+
     private Date applicationDate;
     private Date arrivingDate;
 
     @OneToOne(cascade = CascadeType.ALL)
-    private Building buildingPreference;
+    private Building buildingNO;
+
+    private ApplicationStatus status;
 
     public RoomApplication() {
     }
@@ -24,29 +30,5 @@ public class RoomApplication implements Serializable {
 
     public void setApplicationId(long applicationId) {
         this.applicationId = applicationId;
-    }
-
-    public Date getApplicationDate() {
-        return applicationDate;
-    }
-
-    public void setApplicationDate(Date applicationDate) {
-        this.applicationDate = applicationDate;
-    }
-
-    public Date getArrivingDate() {
-        return arrivingDate;
-    }
-
-    public void setArrivingDate(Date arrivingDate) {
-        this.arrivingDate = arrivingDate;
-    }
-
-    public Building getBuildingPreference() {
-        return buildingPreference;
-    }
-
-    public void setBuildingPreference(Building buildingPreference) {
-        this.buildingPreference = buildingPreference;
     }
 }
