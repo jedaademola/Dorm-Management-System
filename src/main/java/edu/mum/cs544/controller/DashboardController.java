@@ -12,6 +12,14 @@ public class DashboardController {
 
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
+    public ModelAndView login() {
+        ModelAndView model = new ModelAndView();
+        model.setViewName("login");
+        return model;
+    }
+
+
+    @RequestMapping(value = "/index", method = RequestMethod.GET)
     public ModelAndView index() {
         ModelAndView model = new ModelAndView();
         model.setViewName("index");
