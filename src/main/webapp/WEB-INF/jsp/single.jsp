@@ -85,7 +85,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="header">
     <div class="container">
         <div class="w3layouts_logo">
-            <a href="index.html"><h1>One<span>Movies</span></h1></a>
+            <a href="index.jsp"><h1>One<span>Movies</span></h1></a>
         </div>
         <div class="w3_search">
             <form action="#" method="post">
@@ -176,7 +176,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
                 <nav>
                     <ul class="nav navbar-nav">
-                        <li class="w3_home_act"><a href="index.html">Home</a></li>
+                        <li class="w3_home_act"><a href="index.jsp">Home</a></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Genres <b class="caret"></b></a>
                             <ul class="dropdown-menu multi-column columns-3">
@@ -275,7 +275,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <!-- /w3l-medile-movies-grids -->
         <div class="agileits-single-top">
             <ol class="breadcrumb">
-                <li><a href="index.html">Home</a></li>
+                <li><a href="index.jsp">Home</a></li>
                 <li class="active">Single</li>
             </ol>
         </div>
@@ -823,7 +823,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 </div>
             </div>
             <div class="col-md-6 w3ls_footer_grid_right">
-                <a href="index.html"><h2>One<span>Movies</span></h2></a>
+                <a href="index.jsp"><h2>One<span>Movies</span></h2></a>
             </div>
             <div class="clearfix"></div>
         </div>

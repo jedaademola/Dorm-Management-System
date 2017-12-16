@@ -1,6 +1,7 @@
 package edu.mum.cs544.dao;
 
 
+import edu.mum.cs544.model.AbstractModel;
 import edu.mum.cs544.model.Users;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -8,11 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.sql.DataSource;
 import java.util.List;
 
 @Repository
 @Transactional
-public class UserDao {
+public class UserDao extends AbstractDao<AbstractModel> {
 
     @Autowired
     private SessionFactory _sessionFactory;
@@ -49,5 +51,10 @@ public class UserDao {
     public void update(Users user) {
         getSession().update(user);
         return;
+    }
+
+    @Override
+    public void setDataSource(DataSource dataSource) {
+
     }
 }
