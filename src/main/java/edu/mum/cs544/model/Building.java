@@ -1,10 +1,7 @@
 package edu.mum.cs544.model;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -15,6 +12,11 @@ public class Building {
     private String buildingNo;
     @OneToMany(mappedBy = "building")
     private List<Room> rooms;
+    @OneToOne(mappedBy = "building")
+    private ResidenceAdvisor ra;
+    @ManyToOne
+    @JoinColumn(name="adminId")
+    private Admin admin;
 
     //Constructor
     public Building() {
@@ -44,4 +46,21 @@ public class Building {
     public void setRooms(List<Room> rooms) {
         this.rooms = rooms;
     }
+
+    public Admin getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(Admin admin) {
+        this.admin = admin;
+    }
+
+    public ResidenceAdvisor getRa() {
+        return ra;
+    }
+
+    public void setRa(ResidenceAdvisor ra) {
+        this.ra = ra;
+    }
 }
+

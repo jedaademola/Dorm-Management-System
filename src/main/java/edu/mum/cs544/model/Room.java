@@ -1,8 +1,11 @@
+
+
+
+
 package edu.mum.cs544.model;
 
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 public class Room {
@@ -11,11 +14,15 @@ public class Room {
     @GeneratedValue
     private long id;
     private String roomNo;
-    @OneToMany(mappedBy = "room")
-    private List<Student> students;
+    @OneToOne
+    @JoinColumn(name = "studentId")
+    private Student student;
     @ManyToOne
     private Building building;
 
+    @ManyToOne
+    @JoinColumn(name="adminId")
+    private Admin admin;
 
     //Constructor
     public Room() {
@@ -38,12 +45,12 @@ public class Room {
         this.roomNo = roomNo;
     }
 
-    public List<Student> getStudents() {
-        return students;
+    public Student getStudent() {
+        return student;
     }
 
-    public void setStudents(List<Student> students) {
-        this.students = students;
+    public void setStudent(Student student) {
+        this.student = student;
     }
 
     public Building getBuilding() {
@@ -54,4 +61,11 @@ public class Room {
         this.building = building;
     }
 
+    public Admin getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(Admin admin) {
+        this.admin = admin;
+    }
 }
