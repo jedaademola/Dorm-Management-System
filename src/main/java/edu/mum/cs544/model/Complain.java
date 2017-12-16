@@ -1,8 +1,11 @@
 package edu.mum.cs544.model;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import javax.persistence.*;
 import javax.validation.Valid;
 import java.io.Serializable;
+import java.util.Date;
 
 
 @Entity
@@ -19,8 +22,14 @@ public class Complain implements Serializable{
     @Valid
     //unidirectional relationship
     @ManyToOne(cascade = CascadeType.ALL)
-    private Student student;
+    private Student studentId;
 
+    @Temporal(TemporalType.DATE)
+    private Date complainDate;
+
+    @NotEmpty(message = "{NotEmpty.validation}")
+    @Column(name="feedback", columnDefinition="TEXT")
+    private String feedBack;
 
     public long getId() {
         return id;
@@ -46,11 +55,28 @@ public class Complain implements Serializable{
         this.description = description;
     }
 
-    public Student getStudent() {
-        return student;
+
+    public Student getStudentId() {
+        return studentId;
     }
 
-    public void setStudent(Student student) {
-        this.student = student;
+    public void setStudentId(Student studentId) {
+        this.studentId = studentId;
+    }
+
+    public Date getComplainDate() {
+        return complainDate;
+    }
+
+    public void setComplainDate(Date complainDate) {
+        this.complainDate = complainDate;
+    }
+
+    public String getFeedBack() {
+        return feedBack;
+    }
+
+    public void setFeedBack(String feedBack) {
+        this.feedBack = feedBack;
     }
 }
