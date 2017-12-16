@@ -1,18 +1,20 @@
 package edu.mum.cs544.model;
 
-import javax.persistence.CascadeType;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
+@Entity
+@Table(name = "application")
 public class RoomApplication implements Serializable {
 
+    @Id
+    @GeneratedValue
     private long applicationId;
 
-   @ManyToOne(cascade = CascadeType.ALL)
-    private Student studentNo;
-
+   @ManyToOne//(cascade = CascadeType.ALL)
+   @JoinColumn(name="studentId")
+    private Student student;
     private Date applicationDate;
     private Date arrivingDate;
 

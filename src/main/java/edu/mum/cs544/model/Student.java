@@ -1,6 +1,7 @@
 package edu.mum.cs544.model;
 
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -10,6 +11,10 @@ public class Student extends Person {
 
     @OneToOne(mappedBy = "student")
     private Room room;
+
+    //@OneToMany(mappedBy = "student")
+    //private RoomApplication applicationNo;
+
     //Constructor
     public Student() {
     }
@@ -24,5 +29,19 @@ public class Student extends Person {
         this.studentId = studentId;
     }
 
+    public Room getRoom() {
+        return room;
+    }
 
+    public void setRoom(Room room) {
+        this.room = room;
+    }
+
+//    public RoomApplication getApplicationNo() {
+//        return applicationNo;
+//    }
+//
+//    public void setApplicationNo(RoomApplication applicationNo) {
+//        this.applicationNo = applicationNo;
+//    }
 }

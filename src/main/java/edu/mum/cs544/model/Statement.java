@@ -1,15 +1,14 @@
 package edu.mum.cs544.model;
 
-import javax.persistence.CascadeType;
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
 @Entity
 public class Statement implements Serializable {
 
+    @Id
+    @GeneratedValue
     private long id;
 
     //unidirectionals

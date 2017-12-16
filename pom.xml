@@ -142,7 +142,11 @@
             <artifactId>hibernate-jpa-2.1-api</artifactId>
             <version>1.0.0.Final</version>
         </dependency>
-
+        <!--<dependency>-->
+            <!--<groupId>org.hibernate</groupId>-->
+            <!--<artifactId>hibernate-core</artifactId>-->
+            <!--&lt;!&ndash;<version>4.1.4.Final</version>&ndash;&gt;-->
+        <!--</dependency>-->
 
         <dependency>
             <groupId>org.hibernate</groupId>
