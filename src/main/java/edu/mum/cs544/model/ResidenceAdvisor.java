@@ -7,9 +7,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
 @Entity
-public class ResidenceAdvisor extends Person {
+public class ResidenceAdvisor extends Student {
 
-    private String raId;
+    /// private String raId;
 
     @OneToOne
     @JoinColumn(name = "buildingNo")
@@ -20,13 +20,13 @@ public class ResidenceAdvisor extends Person {
 
     //Getters and Setters
 
-    public String getRaId() {
-        return raId;
-    }
+    //public String getRaId() {
+    //    return raId;
+    //  }
 
-    public void setRaId(String raId) {
-        this.raId = raId;
-    }
+    //  public void setRaId(String raId) {
+    //     this.raId = raId;
+    //   }
 
     public Building getBuilding() {
         return building;

@@ -6,7 +6,6 @@ import edu.mum.cs544.model.Student;
 import edu.mum.cs544.service.BuildingRoomService;
 import edu.mum.cs544.service.StudentService;
 import edu.mum.cs544.util.ApplicationStatus;
-import edu.mum.cs544.util.Utility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -37,7 +36,7 @@ public class StudentController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> createStudent(@RequestBody @Validated Student student) {
 
-        String password = Utility.getSaltString();
+        String password = "1234";//Utility.getSaltString();
 
         student.setPassword(passwordEncoder.encode(password));
         student.setStudentId("986040");//TODO should change this
@@ -53,6 +52,13 @@ public class StudentController {
 
     @RequestMapping(value = "/complaint", method = RequestMethod.GET)
     public ModelAndView complaintForm() {
+        ModelAndView model = new ModelAndView();
+        model.setViewName("complaint");
+        return model;
+    }
+
+    @RequestMapping(value = "/dashboard", method = RequestMethod.GET)
+    public ModelAndView dashboard() {
         ModelAndView model = new ModelAndView();
         model.setViewName("complaint");
         return model;

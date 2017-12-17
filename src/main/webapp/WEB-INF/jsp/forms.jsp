@@ -83,6 +83,10 @@
                         <a href="${cp}/statement"><i class="fa fa-dashboard fa-fw"></i> Check in/Check out</a>
                     </li>
 
+                    <li>
+                        <a href="${cp}/logout"><i class="fa"></i> Logout</a>
+                    </li>
+
 
                 </ul>
             </div>
@@ -135,16 +139,16 @@
                                     </c:if>
                                 </div>
                                 <form:form role="form" id="formRoomApplication"
-                                           action="${cp}/api/v1/dorm/student/room/apply">
+                                           action="${cp}/api/v1/dorm/student/room/apply" method="POST">
     <div class="form-group">
     <label>Building</label>
-        <form:select class="form-control" id="buildingId" path="Building.buildingNo">
+        <form:select class="form-control" id="buildingId" path="buildingNo">
             <form:options items="${buildings}" itemValue="value" itemLabel="label"/>
     </form:select>
     </div>
     <div class="form-group">
     <label>Room</label>
-        <form:select class="form-control" id="roomNo" path="Room.roomNo" method="POST">
+        <form:select class="form-control" id="roomNo" path="roomNo">
             <form:options items="${rooms}" itemValue="value" itemLabel="label"/>
     </form:select>
     </div>

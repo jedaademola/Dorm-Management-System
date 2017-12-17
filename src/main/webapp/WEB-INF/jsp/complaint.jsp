@@ -1,7 +1,10 @@
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <c:set var="cp" value="${pageContext.request.servletContext.contextPath}" scope="request"/>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -12,7 +15,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Dorm Management System: Room Application</title>
+    <title>Dorm Management System: Complaint form</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="${cp}/css/bootstrap.min.css" rel="stylesheet">
@@ -80,7 +83,9 @@
                     <li>
                         <a href="${cp}/statement"><i class="fa fa-dashboard fa-fw"></i> Check in/Check out</a>
                     </li>
-
+                    <li>
+                        <a href="${cp}/logout"><i class="fa"></i> Logout</a>
+                    </li>
 
                 </ul>
             </div>
@@ -92,7 +97,7 @@
     <div id="page-wrapper">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Room Application form</h1>
+                <h1 class="page-header">Complaint form</h1>
             </div>
             <!-- /.col-lg-12 -->
         </div>
@@ -118,26 +123,21 @@
                                     <div id="resultsError"></div>
                                 </div>
 
-                                <form:form role="form" id="formRoomApplication">
+                                <form:form role="form" id="formComplaint">
                                     <div class="form-group">
-                                        <label>Building</label>
-                                        <form:select class="form-control" id="buildingId" path="buildingNo">
-                                            <form:options items="${buildings}" itemValue="value" itemLabel="label"/>
-                                        </form:select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Room</label>
-                                        <form:select class="form-control" id="roomNo" path="roomNo">
-                                            <form:options items="${rooms}" itemValue="value" itemLabel="label"/>
-                                        </form:select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Arrival Date</label>
-                                        <input class="form-control" placeholder="YYYY-MM-DD" id="txtArivalDate">
+                                        <label>Subject</label>
+                                        <input class="form-control" placeholder="No water in my room" id="txtSubject">
                                     </div>
 
                                     <div class="form-group">
-                                        <button type="button" class="btn btn-outline btn-primary" id="btnSign">Submit
+                                        <label>Body</label>
+
+                                        <textarea class="form-control" rows="3" id="txtBody"></textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <button type="button" class="btn btn-outline btn-primary" id="btnComplaint">
+                                            Submit
                                             Application
                                         </button>
                                     </div>
