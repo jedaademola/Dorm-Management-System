@@ -1,7 +1,9 @@
 package edu.mum.cs544.controller;
 
 import edu.mum.cs544.model.Response;
+import edu.mum.cs544.model.RoomApplication;
 import edu.mum.cs544.model.Student;
+import edu.mum.cs544.service.BuildingRoomService;
 import edu.mum.cs544.service.StudentService;
 import edu.mum.cs544.util.Utility;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,23 +12,24 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 @RestController
-@RequestMapping(value = "/api/v1/dorm")
+//@RequestMapping(value = "/api/v1/dorm")
 public class StudentController {
 
     @Autowired
     StudentService studentService;
 
     @Autowired
+    BuildingRoomService buildingRoomService;
+
+    @Autowired
     private PasswordEncoder passwordEncoder;
 
 
-    @RequestMapping(value = "/student", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE,
+    @RequestMapping(value = "/api/v1/dorm/student", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> createStudent(@RequestBody @Validated Student student) {
 
@@ -42,5 +45,23 @@ public class StudentController {
 
         return new ResponseEntity<>(respStudent, httpCode);
 
+    }
+
+    @RequestMapping(value = "/complaint", method = RequestMethod.GET)
+    public ModelAndView complaintForm() {
+        ModelAndView model = new ModelAndView();
+        model.setViewName("complaint");
+        return model;
+    }
+
+    @RequestMapping(value = "/studentForm", method = RequestMethod.GET)
+    public ModelAndView studentForm(@ModelAttribute("command") RoomApplication roomApplication) {
+        ModelAndView model = new ModelAndView();
+
+        model.addObject("building", buildingRoomService.getBuildingListForDropDown());
+        model.addObject("room", buildingRoomService.getRoomListForDropDown(0));
+
+        model.setViewName("forms");
+        return model;
     }
 }

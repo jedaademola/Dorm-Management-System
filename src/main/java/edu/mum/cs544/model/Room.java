@@ -12,11 +12,13 @@ public class Room {
 
     @Id
     @GeneratedValue
-    private long id;
+    private int id;
     private String roomNo;
+
     @OneToOne
     @JoinColumn(name = "studentId")
     private Student student;
+
     @ManyToOne
     private Building building;
 
@@ -29,11 +31,11 @@ public class Room {
     }
     //Getters and Setters
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -45,13 +47,7 @@ public class Room {
         this.roomNo = roomNo;
     }
 
-    public Student getStudent() {
-        return student;
-    }
 
-    public void setStudent(Student student) {
-        this.student = student;
-    }
 
     public Building getBuilding() {
         return building;

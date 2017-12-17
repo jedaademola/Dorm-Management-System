@@ -13,13 +13,29 @@ public class RoomApplication implements Serializable {
     @Id
     @GeneratedValue
     private long id;
+
     @ManyToOne//(cascade = CascadeType.ALL)
-   @JoinColumn(name="studentId")
+    @JoinColumn(name = "studentId")
     private Student student;
+
     @OneToOne(cascade = CascadeType.ALL)
     private Building buildingNo;
+
+    @ManyToOne
+    @JoinColumn(name = "roomNo")
+    private Room roomNo;
+
+    public Room getRoomNo() {
+        return roomNo;
+    }
+
+    public void setRoomNo(Room roomNo) {
+        this.roomNo = roomNo;
+    }
+
     @Enumerated(EnumType.STRING)
     private ApplicationStatus status;
+
     private Date applicationDate;
     private Date arrivingDate;
 

@@ -120,14 +120,14 @@
 <form:form role="form" id="formRoomApplication">
     <div class="form-group">
     <label>Building</label>
-    <form:select class="form-control" id="buildingId" path="building">
-        <form:options items="${blocks}" itemValue="value" itemLabel="label"/>
+    <form:select class="form-control" id="buildingId" path="buildingNo">
+        <form:options items="${building}" itemValue="value" itemLabel="label"/>
     </form:select>
     </div>
     <div class="form-group">
     <label>Room</label>
-    <form:select class="form-control" id="roomNo" path="room">
-        <form:options items="${blocks}" itemValue="value" itemLabel="label"/>
+    <form:select class="form-control" id="roomNo" path="roomNo">
+        <form:options items="${room}" itemValue="value" itemLabel="label"/>
     </form:select>
     </div>
     <div class="form-group">
