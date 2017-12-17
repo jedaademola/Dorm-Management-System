@@ -26,6 +26,12 @@ public class DashboardController {
         return model;
     }
 
+    @RequestMapping(value = "/signup", method = RequestMethod.GET)
+    public ModelAndView signUpForm() {
+        ModelAndView model = new ModelAndView();
+        model.setViewName("signup");
+        return model;
+    }
 
     @RequestMapping(value = "/studentForm", method = RequestMethod.GET)
     public ModelAndView studentForm() {
