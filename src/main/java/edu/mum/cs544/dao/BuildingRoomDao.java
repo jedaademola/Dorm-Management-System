@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.sql.DataSource;
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -30,14 +31,18 @@ public class BuildingRoomDao extends AbstractDao<AbstractModel> {
     }
 
     public List<Building> listBuilding() {
-        return getSession().createQuery("from Building").list();
+
+        List<Building> buildings = new ArrayList<>();
+        buildings = getSession().createQuery("from Building").list();
+        return buildings;
 
     }
 
     public List<Room> listRoom(int buildingId) {
 
-        return getSession().createQuery("from Room where building =:buildingId or 0 = 0")  // TODO CHECK THIS
-                .setParameter("buildingId", buildingId)
+        return getSession().createQuery("select r from Room r ")  // TODO CHECK THIS
+                // return getSession().createQuery("from Room where building =:buildingId or 0 = 0")  // TODO CHECK THIS
+                // .setParameter("buildingId", buildingId)
                 .list();
 
     }

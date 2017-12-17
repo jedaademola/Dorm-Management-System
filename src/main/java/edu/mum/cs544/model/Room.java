@@ -13,11 +13,20 @@ public class Room {
     @Id
     @GeneratedValue
     private int id;
+
     private String roomNo;
 
     @OneToOne
     @JoinColumn(name = "studentId")
     private Student student;
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
+    }
 
     @ManyToOne
     private Building building;
