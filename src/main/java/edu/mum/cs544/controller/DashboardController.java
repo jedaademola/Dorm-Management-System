@@ -47,4 +47,11 @@ public class DashboardController {
         return model;
     }
 
+    @RequestMapping(value = "/complaint", method = RequestMethod.GET)
+    public ModelAndView complaintForm() {
+        ModelAndView model = new ModelAndView();
+        model.setViewName("complaint");
+        return model;
+    }
+
 }

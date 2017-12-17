@@ -1,5 +1,7 @@
 package edu.mum.cs544.model;
 
+import edu.mum.cs544.util.StatementCategory;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -18,7 +20,16 @@ public class Statement implements Serializable {
     @ElementCollection
     private List<Item> items;
 
-    private String category;
+    @Enumerated(EnumType.STRING)
+    private StatementCategory category;
+
+    public StatementCategory getCategory() {
+        return category;
+    }
+
+    public void setCategory(StatementCategory category) {
+        this.category = category;
+    }
 
     public Statement(){
 
@@ -48,11 +59,5 @@ public class Statement implements Serializable {
         this.items = items;
     }
 
-    public String getCategory() {
-        return category;
-    }
 
-    public void setCategory(String category) {
-        this.category = category;
-    }
 }
