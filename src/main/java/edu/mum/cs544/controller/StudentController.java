@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
 
 @RestController
 //@RequestMapping(value = "/api/v1/dorm")
@@ -39,7 +40,7 @@ public class StudentController {
         String password = "1234";//Utility.getSaltString();
 
         student.setPassword(passwordEncoder.encode(password));
-        student.setStudentId("986040");//TODO should change this
+        // student.setStudentId("986040");//TODO should change this
 
         Response respStudent = new Response();
         studentService.save(student);
@@ -82,9 +83,10 @@ public class StudentController {
     public ResponseEntity<?> roomApplicationREST(@RequestBody @Validated RoomApplication data) {
 
         Student s = new Student();
-        s.setStudentId("986040");
+        s.setStudentId("986040");//TODO replace from Session
         data.setStudent(s);
         data.setStatus(ApplicationStatus.PENDING);
+        data.setApplicationDate(new Date());
 
         Response respStudent = new Response();
         studentService.roomApplication(data);
