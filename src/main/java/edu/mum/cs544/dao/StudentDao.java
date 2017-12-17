@@ -19,9 +19,7 @@ public class StudentDao extends AbstractDao<AbstractModel> {
 
     private Session getSession() {
         return _sessionFactory.getCurrentSession();
-
     }
-
 
     public void save(Student Student) {
         getSession().save(Student);
