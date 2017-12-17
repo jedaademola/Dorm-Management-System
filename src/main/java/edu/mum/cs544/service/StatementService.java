@@ -1,5 +1,6 @@
 package edu.mum.cs544.service;
 
+
 import edu.mum.cs544.dao.AbstractDao;
 import edu.mum.cs544.dao.StatementDAO;
 import edu.mum.cs544.model.AbstractModel;
@@ -41,5 +42,6 @@ public class StatementService extends AbstractService<AbstractModel> {
         StatementDAO statementDAO = (StatementDAO) dao;
         statementDAO.update(statement);
     }
+
 
 }
