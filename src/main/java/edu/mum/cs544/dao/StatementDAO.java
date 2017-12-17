@@ -19,16 +19,6 @@ public class StatementDAO extends AbstractDao<AbstractModel> {
     @Autowired
     private SessionFactory _sessionFactory;
 
-=======
-import edu.mum.cs544.model.Statement;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-
-import java.util.List;
-
-public class StatementDAO {
-
-    private SessionFactory _sessionFactory;
 
     private Session getSession() {
 
@@ -49,9 +39,7 @@ public class StatementDAO {
     public List<Statement> statementByCategory(){
         return getSession().createQuery("from Statement where s.category = category").list();
     }
-    public void update(Statement statement) {
-        getSession().update(statement);
-    }
+
 
     @Override
     public void setDataSource(DataSource dataSource) {
