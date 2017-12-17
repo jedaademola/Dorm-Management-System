@@ -8,7 +8,9 @@ import javax.persistence.OneToOne;
 
 @Entity
 public class ResidenceAdvisor extends Person {
+
     private String raId;
+
     @OneToOne
     @JoinColumn(name = "buildingNo")
     private Building building;

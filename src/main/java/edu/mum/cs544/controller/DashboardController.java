@@ -26,6 +26,12 @@ public class DashboardController {
         return model;
     }
 
+    @RequestMapping(value = "/signup", method = RequestMethod.GET)
+    public ModelAndView signUpForm() {
+        ModelAndView model = new ModelAndView();
+        model.setViewName("signup");
+        return model;
+    }
 
     @RequestMapping(value = "/studentForm", method = RequestMethod.GET)
     public ModelAndView studentForm() {
@@ -38,6 +44,13 @@ public class DashboardController {
     public ModelAndView series() {
         ModelAndView model = new ModelAndView();
         model.setViewName("single");
+        return model;
+    }
+
+    @RequestMapping(value = "/complaint", method = RequestMethod.GET)
+    public ModelAndView complaintForm() {
+        ModelAndView model = new ModelAndView();
+        model.setViewName("complaint");
         return model;
     }
 

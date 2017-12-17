@@ -21,7 +21,7 @@ import java.util.regex.Pattern;
 public class Utility {
 
 
-    public static final String APP_NAME = "TV_Series_Management_System";
+    public static final String APP_NAME = "dorm-management-system";
     private static final Logger logger = LoggerFactory.getLogger(Utility.class);
     static SecureRandom number = null;
 
