@@ -46,7 +46,7 @@ public class ComplainDAO extends AbstractDao<AbstractModel> {
 
     }
 
-    public List<Complain> getByStudentId(long id) {
+    public List<Complain> getByStudentId(int id) {
 
         return getSession().createQuery("from Complain where studentId =:id")
                 .setParameter("id", id)

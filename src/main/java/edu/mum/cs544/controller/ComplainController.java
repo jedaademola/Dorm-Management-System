@@ -20,27 +20,20 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/api/v1/dorm")
 public class ComplainController {
-
-    @Autowired
-    ComplainService complainService;
-
-    @RequestMapping(value = "/complain", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> createComplain(@RequestBody @Validated Complain complain) {
-
-        Response respComplain = new Response();
-        complainService.save(complain);
-        HttpStatus httpCode = (complain.getId() > 0) ? HttpStatus.CREATED : HttpStatus.INTERNAL_SERVER_ERROR;
-        respComplain.setDescription((complain.getId() > 0) ? "Operation successful" : "Operation failed");
-
-        return new ResponseEntity<>(respComplain, httpCode);
-    }
-    @RequestMapping(value = "/applicationList", method =  RequestMethod.GET)
-    public List<Complain> complainList(Complain complain){//, Model model to recheck
-
-        List<Complain> complains = new ArrayList<>();
-        complains = complainService.allComplains();
-        //model.addAllAttributes(applications);
-        return complains;
-    }
+//
+//    @Autowired
+//    ComplainService complainService;
+//
+//    @RequestMapping(value = "/complain", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE,
+//            produces = MediaType.APPLICATION_JSON_VALUE)
+//    public ResponseEntity<?> createComplain(@RequestBody @Validated Complain complain) {
+//
+//        Response respComplain = new Response();
+//        complainService.save(complain);
+//        HttpStatus httpCode = (complain.getId() > 0) ? HttpStatus.CREATED : HttpStatus.INTERNAL_SERVER_ERROR;
+//        respComplain.setDescription((complain.getId() > 0) ? "Operation successful" : "Operation failed");
+//
+//        return new ResponseEntity<>(respComplain, httpCode);
+//    }
+//
 }

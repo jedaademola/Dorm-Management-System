@@ -18,6 +18,7 @@ public class Statement implements Serializable {
     private Room roomNo;
 
     @ElementCollection
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Item> items;
 
     @Enumerated(EnumType.STRING)

@@ -13,7 +13,7 @@ public class Complain implements Serializable{
 
     @Id
     @GeneratedValue
-    private long id;
+    private int id;
 
     private String subject;
 
@@ -35,7 +35,7 @@ public class Complain implements Serializable{
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
