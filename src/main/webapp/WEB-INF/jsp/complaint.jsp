@@ -5,6 +5,7 @@
 <c:set var="cp" value="${pageContext.request.servletContext.contextPath}" scope="request"/>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +15,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Dorm Management System: Room Application</title>
+    <title>Dorm Management System: Complaint form</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="${cp}/css/bootstrap.min.css" rel="stylesheet">
@@ -82,11 +83,9 @@
                     <li>
                         <a href="${cp}/statement"><i class="fa fa-dashboard fa-fw"></i> Check in/Check out</a>
                     </li>
-
                     <li>
                         <a href="${cp}/logout"><i class="fa"></i> Logout</a>
                     </li>
-
 
                 </ul>
             </div>
@@ -98,7 +97,7 @@
     <div id="page-wrapper">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Room Application form</h1>
+                <h1 class="page-header">Complaint form</h1>
             </div>
             <!-- /.col-lg-12 -->
         </div>
@@ -112,55 +111,36 @@
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-lg-6">
-<div class="alert alert-success alert-dismissable" style="display:none"
-     id="msgAlert">
-    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-    <div id="resultsSuccess"></div>
-</div>
-
-<div class="alert alert-danger alert-dismissable" style="display:none"
-     id="msgAlertFailed">
-    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-    <div id="resultsError"></div>
-</div>
-
-                                <div>
-                                    <c:if test="${not empty emr}">
-                                        <c:choose>
-                                            <c:when test="${fn:containsIgnoreCase(emr,'Success')}">
-                                                <font color="green" style='vertical-align: auto'>${emr}</font>
-                                            </c:when>
-                                            <c:otherwise>
-                                                <font color="red" style='vertical-align: auto'>${emr}</font>
-                                            </c:otherwise>
-
-                                        </c:choose>
-
-                                    </c:if>
+                                <div class="alert alert-success alert-dismissable" style="display:none"
+                                     id="msgAlert">
+                                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                    <div id="resultsSuccess"></div>
                                 </div>
-                                <form:form role="form" id="formRoomApplication"
-                                           action="${cp}/api/v1/dorm/student/room/apply" method="POST">
-    <div class="form-group">
-    <label>Building</label>
-        <form:select class="form-control" id="buildingId" path="buildingNo">
-            <form:options items="${buildings}" itemValue="value" itemLabel="label"/>
-    </form:select>
-    </div>
-    <div class="form-group">
-    <label>Room</label>
-        <form:select class="form-control" id="roomNo" path="roomNo">
-            <form:options items="${rooms}" itemValue="value" itemLabel="label"/>
-    </form:select>
-    </div>
-    <div class="form-group">
-    <label>Arrival Date</label>
-        <input class="form-control" placeholder="YYYY-MM-DD" id="txtArivalDate">
-    </div>
 
-    <div class="form-group">
-        <button type="Submit" class="btn btn-outline btn-primary" id="btnApply">Submit Application
-    </button>
-    </div>
+                                <div class="alert alert-danger alert-dismissable" style="display:none"
+                                     id="msgAlertFailed">
+                                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                    <div id="resultsError"></div>
+                                </div>
+
+                                <form:form role="form" id="formComplaint">
+                                    <div class="form-group">
+                                        <label>Subject</label>
+                                        <input class="form-control" placeholder="No water in my room" id="txtSubject">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Body</label>
+
+                                        <textarea class="form-control" rows="3" id="txtBody"></textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <button type="button" class="btn btn-outline btn-primary" id="btnComplaint">
+                                            Submit
+                                            Application
+                                        </button>
+                                    </div>
 
 
                                 </form:form>
@@ -194,70 +174,6 @@
 
 <!-- Custom Theme JavaScript -->
 <script src="${cp}/js/startmin.js"></script>
-<script type="text/javascript">
-    $(document).ready(function () {
-
-        $(document).on("click", "#btnApply", function (e) {
-            //btnOperation();
-        });
-
-
-    });
-
-
-    function btnOperation() {
-
-        var jsonRequest = {};
-
-        jsonRequest["roomNo"] = $("#roomNo").val();
-        jsonRequest["buildingNo"] = $("#buildingId").val();
-        jsonRequest["arrivingDate"] = $("#txtArivalDate").val();
-
-
-        var param = JSON.stringify(jsonRequest);
-
-        $.ajax({
-                url: "${cp}/api/v1/dorm/student/room/apply",
-                type: "POST",
-                dataType: "json",
-                beforeSend: function (xhr) {
-                    xhr.setRequestHeader("Accept", "application/json");
-                    xhr.setRequestHeader("Content-Type", "application/json");
-
-                },
-                data: param,
-                success: function (data) {
-
-                    $("#resultsSuccess").html(data.description);
-                    document.getElementById("msgAlert").style.display = '';
-                    document.getElementById("msgAlertFailed").style.display = 'none';
-
-                    setTimeout(
-                        function () {
-                            location.reload();
-                        }, 7000);
-
-
-                }
-                ,
-                error: function (xhr, errorType, exception) {
-
-
-                    document.getElementById("msgAlertFailed").style.display = '';
-                    document.getElementById("msgAlert").style.display = 'none';
-
-                    var responseText = JSON.parse(xhr.responseText);
-
-
-                    $("#resultsError").html(responseText.description);
-
-                }
-            }
-        );
-    }
-
-
-</script>
 
 </body>
 </html>

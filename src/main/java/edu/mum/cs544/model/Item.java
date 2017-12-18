@@ -4,11 +4,13 @@ package edu.mum.cs544.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 public class Item {
+
+    public Item() {
+
+    }
 
     @Id
     @GeneratedValue

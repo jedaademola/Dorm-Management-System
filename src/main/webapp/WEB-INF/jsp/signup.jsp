@@ -91,6 +91,10 @@
 
                                     <form role="form" id="formSignUp">
                                         <div class="form-group">
+                                            <label>Student Application</label>
+                                            <input class="form-control" placeholder="Student ID" id="txtStudId">
+                                        </div>
+                                        <div class="form-group">
                                             <label>First Name</label>
                                             <input class="form-control" placeholder="First Name" id="txtFirstName">
                                             <!--p class="help-block">Example block-level help text here.</p -->
@@ -163,6 +167,8 @@
         jsonRequest["fname"] = $("#txtFirstName").val();
         jsonRequest["lname"] = $("#txtLastName").val();
         jsonRequest["email"] = $("#txtEmail").val();
+        jsonRequest["studentId"] = $("#txtStudId").val();
+        
 
 
         var param = JSON.stringify(jsonRequest);
