@@ -1,6 +1,7 @@
 package edu.mum.cs544.dao;
 
 import edu.mum.cs544.model.AbstractModel;
+import edu.mum.cs544.model.Complain;
 import edu.mum.cs544.model.RoomApplication;
 import edu.mum.cs544.model.Student;
 import org.hibernate.Session;
@@ -24,6 +25,12 @@ public class StudentDao extends AbstractDao<AbstractModel> {
 
     public void save(Student Student) {
         getSession().save(Student);
+        return;
+    }
+
+
+    public void addStudentComplaint(Complain complain) {
+        getSession().save(complain);
         return;
     }
 
