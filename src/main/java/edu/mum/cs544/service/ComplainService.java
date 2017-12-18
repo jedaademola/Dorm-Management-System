@@ -32,9 +32,9 @@ public class ComplainService extends AbstractService<AbstractModel>  {
     }
 
     @Transactional
-    public List<AbstractModel> allComplains() {
+    public List<Complain> allComplains() {
         ComplainDAO complainDAO = (ComplainDAO) dao;
-        return complainDAO.findAll();
+        return complainDAO.listComplain();
     }
 
     @Transactional

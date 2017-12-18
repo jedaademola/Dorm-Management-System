@@ -1,12 +1,17 @@
 package edu.mum.cs544.dao;
 
+import edu.mum.cs544.model.AbstractModel;
 import edu.mum.cs544.model.RoomApplication;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
+import javax.sql.DataSource;
 import java.util.List;
-
-public class RoomApplicationDAO {
+@Repository
+@Transactional
+public class RoomApplicationDAO extends AbstractDao<AbstractModel>{
 
     private SessionFactory _sessionFactory;
     private Session getSession() {
@@ -30,5 +35,14 @@ public class RoomApplicationDAO {
     }
     public void update(RoomApplication roomApplication) {
         getSession().update(roomApplication);
+    }
+
+    public RoomApplication findByStudentId(long id){
+        return (RoomApplication) getSession().createQuery("from application where studentId =:studentId");
+    }
+
+    @Override
+    public void setDataSource(DataSource dataSource) {
+
     }
 }
