@@ -1,7 +1,6 @@
 package edu.mum.cs544.service;
 
 
-import edu.mum.cs544.model.User;
 import edu.mum.cs544.security.AuthenticationWithToken;
 import edu.mum.cs544.util.LoggerUtil;
 import org.slf4j.Logger;
@@ -27,7 +26,7 @@ public class TokenService {
         logger.info("creating TokenService");
     }
 
-    public static User getCurrentUserFromSecurityContext() {
+    public static <T> T getCurrentUserFromSecurityContext() {
 
         try {
 
@@ -36,7 +35,7 @@ public class TokenService {
 
             //Object principal = a.getPrincipal();
 
-            return (User) auth.getPrincipal();
+            return (T) auth.getPrincipal();
         } catch (Exception ex) {
             logger.error("Error retrieving User from Security context : " + ex);
             LoggerUtil.logError(logger, ex);

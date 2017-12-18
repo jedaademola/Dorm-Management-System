@@ -15,7 +15,12 @@ public class Student extends Person {
     //Constructor
     public Student() {
     }
-    //Getters and Setters
+
+    @Override
+    public String toString() {
+        return studentId;
+    }
+//Getters and Setters
 
 
     public String getStudentId() {

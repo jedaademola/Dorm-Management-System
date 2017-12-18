@@ -1,7 +1,5 @@
 package edu.mum.cs544.model;
 
-import org.hibernate.validator.constraints.NotEmpty;
-
 import javax.persistence.*;
 import javax.validation.Valid;
 import java.io.Serializable;
@@ -22,12 +20,13 @@ public class Complain implements Serializable{
     @Valid
     //unidirectional relationship
     @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "studentId")
     private Student studentId;
 
     @Temporal(TemporalType.DATE)
     private Date complainDate;
 
-    @NotEmpty(message = "{NotEmpty.validation}")
+    //@NotEmpty(message = "{NotEmpty.validation}")
     @Column(name="feedback", columnDefinition="TEXT")
     private String feedBack;
 

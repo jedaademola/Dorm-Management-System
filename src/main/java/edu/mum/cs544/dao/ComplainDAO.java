@@ -28,17 +28,26 @@ public class ComplainDAO extends AbstractDao<AbstractModel> {
     public void save(Complain complain) {
         getSession().save(complain);
     }
-
+/*
     public Complain saveComplain(Complain complain){
         getSession().save(complain);
         return complain;
 
+    }*/
+
+    public List<Complain> listComplainTest() {
+        return getSession().createQuery("select c.complainDate,c.subject, c.description,c.id," +
+                "c.feedBack,s.fname as name" +
+                " from Complain c join Student s " +
+                "where c.studentId = s.id").list();
+
     }
 
     public List<Complain> listComplain() {
-        return getSession().createQuery("from Complain").list();
+        return getSession().createQuery("select c from Complain c").list();
 
     }
+
 
 
     @Override
@@ -46,9 +55,11 @@ public class ComplainDAO extends AbstractDao<AbstractModel> {
 
     }
 
-    public Complain getByStudentId(long id){
+    public List<Complain> getByStudentId(long id) {
 
-        return (Complain) getSession().createQuery("from Complain where studentId =:studentId");
+        return getSession().createQuery("from Complain where studentId =:id")
+                .setParameter("id", id)
+                .list();
 
     }
 

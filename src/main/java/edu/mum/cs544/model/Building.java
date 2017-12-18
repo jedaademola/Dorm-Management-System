@@ -8,12 +8,18 @@ import java.util.List;
 public class Building {
     @Id
     @GeneratedValue
-    private long id;
+    private int id;
     private String buildingNo;
+    private String location;
+
+
+
     @OneToMany(mappedBy = "building")
     private List<Room> rooms;
+
     @OneToOne(mappedBy = "building")
     private ResidenceAdvisor ra;
+
     @ManyToOne
     @JoinColumn(name="adminId")
     private Admin admin;
@@ -23,11 +29,11 @@ public class Building {
     }
     //Getters and Setters
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -61,6 +67,14 @@ public class Building {
 
     public void setRa(ResidenceAdvisor ra) {
         this.ra = ra;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 }
 
