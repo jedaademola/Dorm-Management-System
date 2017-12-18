@@ -44,10 +44,7 @@ public class ComplainDAO extends AbstractDao<AbstractModel> {
     }
 
     public List<Complain> listComplain() {
-        return getSession().createQuery("select c.complainDate,c.subject, c.description,c.id," +
-                "c.feedBack " +
-                " from Complain c join Student s " +
-                "where c.studentId = s.id").list();
+        return getSession().createQuery("select c from Complain c").list();
 
     }
 

@@ -125,7 +125,7 @@
                                 <tr>
 
                                     <th>#</th>
-                                    <th>Student Name</th>
+                                    <!--th>Student Name</th-->
                                     <th>Subject</th>
                                     <th>Description</th>
                                     <th>Feedback</th>
@@ -137,7 +137,7 @@
                                 <c:forEach var="complaint" items="${complaints}" varStatus="theCount">
                                     <tr class="odd gradeX">
                                         <th scope="row">${theCount.count}</th>
-                                        <td>${complaint.fname}</td>
+                                        <!--td>${complaint.studentId}</td -->
                                         <td>${complaint.subject}</td>
                                         <td>${complaint.description}</td>
                                         <td>${complaint.feedBack}</td>
