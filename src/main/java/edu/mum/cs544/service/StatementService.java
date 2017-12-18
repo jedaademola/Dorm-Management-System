@@ -28,9 +28,9 @@ public class StatementService extends AbstractService<AbstractModel> {
         statementDAO.saveStatement(statement);
     }
     @Transactional
-    public List<AbstractModel> statementList(){
+    public List<Statement> statementList(){
         StatementDAO statementDAO = (StatementDAO) dao;
-        return statementDAO.findAll();
+        return statementDAO.getAll();
     }
     @Transactional
     public List<Statement> byCategory(){

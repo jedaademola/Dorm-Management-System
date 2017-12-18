@@ -31,7 +31,7 @@ public class StatementDAO extends AbstractDao<AbstractModel> {
     }
 
 
-    public List<Statement> statementList(){
+    public List<Statement> getAll(){
 
         return getSession().createQuery("from Statement").list();
     }
