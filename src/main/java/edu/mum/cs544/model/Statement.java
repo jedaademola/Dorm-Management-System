@@ -13,8 +13,13 @@ public class Statement implements Serializable {
     @GeneratedValue
     private long id;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "studentId")
+    private Student student;
+
     //unidirectionals
     @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "roomNo")
     private Room roomNo;
 
     @ElementCollection
@@ -60,5 +65,11 @@ public class Statement implements Serializable {
         this.items = items;
     }
 
+    public Student getStudent() {
+        return student;
+    }
 
+    public void setStudent(Student student) {
+        this.student = student;
+    }
 }

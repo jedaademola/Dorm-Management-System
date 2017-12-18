@@ -48,8 +48,5 @@ public class Item {
 //        return itemList;
 //    }
 
-    public Item(int id, String itemName) {
-        this.itemId = id;
-        this.itemName = itemName;
-    }
+
 }

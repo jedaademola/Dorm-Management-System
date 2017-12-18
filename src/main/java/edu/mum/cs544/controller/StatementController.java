@@ -41,5 +41,30 @@ public class StatementController {
         return model;
     }
 
+    @RequestMapping(value = "/api/v1/dorm/statement", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> createStatement(@RequestBody @Validated Statement statement) {
+
+        //String password = "1234";//Utility.getSaltString();
+
+        //student.setPassword(passwordEncoder.encode(password));
+
+        Response respStatement = new Response();
+        statementService.save(statement);
+        HttpStatus httpCode = (statement.getId() > 0) ? HttpStatus.CREATED : HttpStatus.INTERNAL_SERVER_ERROR;
+        respStatement.setDescription((statement.getId() > 0) ? "Operation successful" : "Operation failed");
+
+        return new ResponseEntity<>(respStatement, httpCode);
+
+    }
+
+    @RequestMapping(value = "/statements", method = RequestMethod.GET)
+    public ModelAndView statementList(){
+        ModelAndView model = new ModelAndView();
+        model.addObject(statementService.statementList());
+        return model;
+    }
+
+
 
 }
