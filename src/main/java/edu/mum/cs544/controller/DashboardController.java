@@ -19,13 +19,6 @@ public class DashboardController {
     }
 
 
-    @RequestMapping(value = "/index", method = RequestMethod.GET)
-    public ModelAndView index() {
-        ModelAndView model = new ModelAndView();
-        model.setViewName("index");
-        return model;
-    }
-
     @RequestMapping(value = "/signup", method = RequestMethod.GET)
     public ModelAndView signUpForm() {
         ModelAndView model = new ModelAndView();

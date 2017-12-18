@@ -42,7 +42,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="navbar-header">
-            <a class="navbar-brand" href="{cp}/index">Dorm Management System</a>
+            <a class="navbar-brand" href="{cp}/dashboard">Dorm Management System</a>
         </div>
 
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -84,7 +84,7 @@
                     </li>
 
                     <li>
-                        <a href="${cp}/logout"><i class="fa"></i> Logout</a>
+                        <a href="${cp}/logout"><i class="fa fa-dashboard fa-fw"></i> Logout</a>
                     </li>
 
 

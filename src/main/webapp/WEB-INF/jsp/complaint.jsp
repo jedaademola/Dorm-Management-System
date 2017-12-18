@@ -175,5 +175,69 @@
 <!-- Custom Theme JavaScript -->
 <script src="${cp}/js/startmin.js"></script>
 
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $(document).on("click", "#btnComplaint", function (e) {
+            btnOperation();
+        });
+
+
+    });
+
+
+    function btnOperation() {
+
+        var jsonRequest = {};
+
+        jsonRequest["subject"] = $("#txtSubject").val();
+        jsonRequest["description"] = $("#txtBody").val();
+
+
+        var param = JSON.stringify(jsonRequest);
+
+        $.ajax({
+                url: "${cp}/api/v1/dorm/student/complaint",
+                type: "POST",
+                dataType: "json",
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader("Accept", "application/json");
+                    xhr.setRequestHeader("Content-Type", "application/json");
+
+                },
+                data: param,
+                success: function (data) {
+
+                    $("#resultsSuccess").html(data.description);
+                    document.getElementById("msgAlert").style.display = '';
+                    document.getElementById("msgAlertFailed").style.display = 'none';
+
+                    setTimeout(
+                        function () {
+                            location.reload();
+                        }, 7000);
+
+
+                }
+                ,
+                error: function (xhr, errorType, exception) {
+
+
+                    document.getElementById("msgAlertFailed").style.display = '';
+                    document.getElementById("msgAlert").style.display = 'none';
+
+                    var responseText = JSON.parse(xhr.responseText);
+
+
+                    $("#resultsError").html(responseText.description);
+
+                }
+            }
+        );
+    }
+
+
+</script>
+
 </body>
 </html>

@@ -1,9 +1,11 @@
 package edu.mum.cs544.controller;
 
+import edu.mum.cs544.model.Complain;
 import edu.mum.cs544.model.Response;
 import edu.mum.cs544.model.RoomApplication;
 import edu.mum.cs544.model.Student;
 import edu.mum.cs544.service.BuildingRoomService;
+import edu.mum.cs544.service.ComplainService;
 import edu.mum.cs544.service.StudentService;
 import edu.mum.cs544.util.ApplicationStatus;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,8 @@ import java.util.Date;
 @RestController
 //@RequestMapping(value = "/api/v1/dorm")
 public class StudentController {
+    @Autowired
+    ComplainService complainService;
 
     @Autowired
     StudentService studentService;
@@ -40,7 +44,6 @@ public class StudentController {
         String password = "1234";//Utility.getSaltString();
 
         student.setPassword(passwordEncoder.encode(password));
-        // student.setStudentId("986040");//TODO should change this
 
         Response respStudent = new Response();
         studentService.save(student);
@@ -51,6 +54,51 @@ public class StudentController {
 
     }
 
+
+    @RequestMapping(value = "/api/v1/dorm/student/complaint", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> addStudentComplaint(@RequestBody @Validated Complain complain) {
+
+        Student s = new Student();
+        s.setStudentId("986040");//TODO replace from Session
+        complain.setStudentId(s);
+        complain.setComplainDate(new Date());
+
+        Response respStudent = new Response();
+        studentService.addStudentComplaint(complain);
+        HttpStatus httpCode = (complain.getId() > 0) ? HttpStatus.CREATED : HttpStatus.INTERNAL_SERVER_ERROR;
+        respStudent.setDescription((complain.getId() > 0) ? "Operation successful" : "Operation failed");
+
+        return new ResponseEntity<>(respStudent, httpCode);
+
+    }
+
+    @RequestMapping(value = "/dashboard", method = RequestMethod.GET)
+    public ModelAndView index() {
+        ModelAndView model = new ModelAndView();
+        model.setViewName("dashboardStudent");
+        return model;
+    }
+
+
+    @RequestMapping(value = "/dashboardra", method = RequestMethod.GET)
+    public ModelAndView dashboardRa() {
+        ModelAndView model = new ModelAndView();
+        model.setViewName("dashboardRA");
+        return model;
+    }
+
+
+    @RequestMapping(value = "/viewcomplaintra", method = RequestMethod.GET)
+    public ModelAndView viewComplaintRa() {
+        ModelAndView model = new ModelAndView();
+        model.addObject("complaints", complainService.allComplains());
+        model.setViewName("viewcomplaintra");
+        return model;
+    }
+
+
+
     @RequestMapping(value = "/complaint", method = RequestMethod.GET)
     public ModelAndView complaintForm() {
         ModelAndView model = new ModelAndView();
@@ -58,12 +106,6 @@ public class StudentController {
         return model;
     }
 
-    @RequestMapping(value = "/dashboard", method = RequestMethod.GET)
-    public ModelAndView dashboard() {
-        ModelAndView model = new ModelAndView();
-        model.setViewName("complaint");
-        return model;
-    }
 
     @RequestMapping(value = "/studentForm", method = RequestMethod.GET)
     public ModelAndView studentForm(@ModelAttribute("command") RoomApplication roomApplication) {
