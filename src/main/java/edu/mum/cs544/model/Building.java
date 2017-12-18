@@ -8,7 +8,7 @@ import java.util.List;
 public class Building {
     @Id
     @GeneratedValue
-    private int id;
+    private long id;
     private String buildingNo;
     private String location;
 
@@ -29,11 +29,11 @@ public class Building {
     }
     //Getters and Setters
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
