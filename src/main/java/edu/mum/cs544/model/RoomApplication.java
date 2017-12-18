@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-@Table(name = "RoomApplication")
+//@Table(name = "RoomApplication")
 public class RoomApplication implements Serializable {
 
     @Id
@@ -15,14 +15,14 @@ public class RoomApplication implements Serializable {
     private long id;
 
     @ManyToOne//(cascade = CascadeType.ALL)
-    @JoinColumn(name = "studentId")
+    @JoinColumn//(name = "studentId")
     private Student student;
 
     @OneToOne(cascade = CascadeType.ALL)
     private Building buildingNo;
 
     @ManyToOne
-    @JoinColumn(name = "roomNo")
+    @JoinColumn//(name = "roomNo")
     private Room roomNo;
 
     public Room getRoomNo() {
