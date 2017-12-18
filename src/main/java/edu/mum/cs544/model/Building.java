@@ -1,14 +1,17 @@
 package edu.mum.cs544.model;
 
 
+import org.apache.cassandra.config.ColumnDefinition;
+
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
 public class Building {
     @Id
-    @GeneratedValue
-    private int id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+   // @Column(ColumnDefinition = Unique(true))
+    private long id;
     private String buildingNo;
     private String location;
 
@@ -29,11 +32,11 @@ public class Building {
     }
     //Getters and Setters
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

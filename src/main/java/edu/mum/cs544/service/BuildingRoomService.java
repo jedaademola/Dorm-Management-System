@@ -35,7 +35,7 @@ public class BuildingRoomService extends AbstractService<AbstractModel> {
     }
 
     @Transactional
-    public List<Room> listRoom(int buildingId) {
+    public List<Room> listRoom(long buildingId) {
 
         BuildingRoomDao buildingRoomDao = (BuildingRoomDao) dao;
         return buildingRoomDao.listRoom(buildingId);

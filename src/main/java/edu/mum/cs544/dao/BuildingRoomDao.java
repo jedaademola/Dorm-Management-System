@@ -38,7 +38,7 @@ public class BuildingRoomDao extends AbstractDao<AbstractModel> {
 
     }
 
-    public List<Room> listRoom(int buildingId) {
+    public List<Room> listRoom(long buildingId) {
 
         return getSession().createQuery("select r from Room r ")  // TODO CHECK THIS
                 // return getSession().createQuery("from Room where building =:buildingId or 0 = 0")  // TODO CHECK THIS

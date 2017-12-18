@@ -17,6 +17,9 @@ public class Statement implements Serializable {
     @JoinColumn(name = "studentId")
     private Student student;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "buildingNo")
+    private Building building;
     //unidirectionals
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "roomNo")

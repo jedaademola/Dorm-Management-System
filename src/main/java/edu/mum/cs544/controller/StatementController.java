@@ -28,9 +28,6 @@ public class StatementController {
     @Autowired
     ItemService itemService;
 
-
-
-
     @RequestMapping(value = "/statement", method = RequestMethod.GET)
     public ModelAndView statementForm() {
         ModelAndView model = new ModelAndView();

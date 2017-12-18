@@ -140,27 +140,27 @@
                                 </div>
                                 <form:form role="form" id="formRoomApplication"
                                            action="${cp}/api/v1/dorm/student/room/apply" method="POST">
-    <div class="form-group">
-    <label>Building</label>
-        <form:select class="form-control" id="buildingId" path="buildingNo">
-            <form:options items="${buildings}" itemValue="value" itemLabel="label"/>
-    </form:select>
-    </div>
-    <div class="form-group">
-    <label>Room</label>
-        <form:select class="form-control" id="roomNo" path="roomNo">
-            <form:options items="${rooms}" itemValue="value" itemLabel="label"/>
-    </form:select>
-    </div>
-    <div class="form-group">
-    <label>Arrival Date</label>
-        <input class="form-control" placeholder="YYYY-MM-DD" id="txtArivalDate">
-    </div>
+                                    <div class="form-group">
+                                    <label>Building</label>
+                                        <form:select class="form-control" id="buildingId" path="buildingNo">
+                                            <form:options items="${buildings}" itemValue="value" itemLabel="label"/>
+                                    </form:select>
+                                    </div>
+                                    <div class="form-group">
+                                    <label>Room</label>
+                                        <form:select class="form-control" id="roomNo" path="roomNo">
+                                            <form:options items="${rooms}" itemValue="value" itemLabel="label"/>
+                                    </form:select>
+                                    </div>
+                                    <div class="form-group">
+                                    <label>Arrival Date</label>
+                                        <input class="form-control" placeholder="YYYY-MM-DD" id="txtArivalDate">
+                                    </div>
 
-    <div class="form-group">
-        <button type="Submit" class="btn btn-outline btn-primary" id="btnApply">Submit Application
-    </button>
-    </div>
+                                    <div class="form-group">
+                                        <button type="Submit" class="btn btn-outline btn-primary" id="btnApply">Submit Application
+                                    </button>
+                                    </div>
 
 
                                 </form:form>
