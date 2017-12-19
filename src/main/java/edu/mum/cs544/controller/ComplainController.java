@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @RestController
 @RequestMapping(value = "/api/v1/dorm")
 public class ComplainController {
@@ -25,11 +28,19 @@ public class ComplainController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> createComplain(@RequestBody @Validated Complain complain) {
 
-        Response respStudent = new Response();
+        Response respComplain = new Response();
         complainService.save(complain);
         HttpStatus httpCode = (complain.getId() > 0) ? HttpStatus.CREATED : HttpStatus.INTERNAL_SERVER_ERROR;
-        respStudent.setDescription((complain.getId() > 0) ? "Operation successful" : "Operation failed");
+        respComplain.setDescription((complain.getId() > 0) ? "Operation successful" : "Operation failed");
 
-        return new ResponseEntity<>(respStudent, httpCode);
+        return new ResponseEntity<>(respComplain, httpCode);
+    }
+    @RequestMapping(value = "/applicationList", method =  RequestMethod.GET)
+    public List<Complain> complainList(Complain complain){//, Model model to recheck
+
+        List<Complain> complains = new ArrayList<>();
+        complains = complainService.allComplains();
+        //model.addAllAttributes(applications);
+        return complains;
     }
 }

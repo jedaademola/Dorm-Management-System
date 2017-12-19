@@ -54,6 +54,7 @@ public class StudentController {
     }
 
 
+
     @RequestMapping(value = "/api/v1/dorm/student/complaint", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> addStudentComplaint(@RequestBody @Validated Complain complain) {
@@ -193,5 +194,6 @@ public class StudentController {
         //return modelandView;
 
     }
+
 
 }
