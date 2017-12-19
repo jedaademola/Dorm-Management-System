@@ -4,6 +4,7 @@ import edu.mum.cs544.dao.AbstractDao;
 import edu.mum.cs544.dao.RoomApplicationDAO;
 import edu.mum.cs544.model.AbstractModel;
 import edu.mum.cs544.model.RoomApplication;
+import edu.mum.cs544.util.ApplicationStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -52,5 +53,18 @@ public class RoomApplicationService extends AbstractService<AbstractModel>{
     public List<RoomApplication> byStudentId(long id){
         RoomApplicationDAO roomApplicationDAO = (RoomApplicationDAO) dao;
         return (List<RoomApplication>) roomApplicationDAO.findByStudentId(id);
+    }
+
+    @Transactional
+    public void reject(long id){
+        RoomApplicationDAO roomApplicationDAO = (RoomApplicationDAO) dao;
+        roomApplicationDAO.findByStudentId(id).setStatus(ApplicationStatus.DENIED);
+
+    }
+    @Transactional
+    public void approve(long id){
+        RoomApplicationDAO roomApplicationDAO = (RoomApplicationDAO) dao;
+        roomApplicationDAO.findByStudentId(id).setStatus(ApplicationStatus.APPROVED);
+
     }
 }

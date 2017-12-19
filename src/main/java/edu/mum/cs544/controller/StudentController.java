@@ -3,6 +3,7 @@ package edu.mum.cs544.controller;
 import edu.mum.cs544.model.*;
 import edu.mum.cs544.service.BuildingRoomService;
 import edu.mum.cs544.service.ComplainService;
+import edu.mum.cs544.service.RoomApplicationService;
 import edu.mum.cs544.service.StudentService;
 import edu.mum.cs544.service.TokenService;
 import edu.mum.cs544.util.ApplicationStatus;
@@ -36,8 +37,11 @@ public class StudentController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    @Autowired
+
     private TokenService tokenService;
+
+    private RoomApplicationService roomApplicationService;
+
 
 
     @RequestMapping(value = "/api/v1/dorm/student", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE,
