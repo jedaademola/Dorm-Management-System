@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Dorm Management System: RA View Check in/Checkout</title>
+    <title>Dorm Management System: View Complaints</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="${cp}/css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all"/>
@@ -76,26 +76,21 @@
                         <!-- /input-group -->
                     </li>
                     <li>
-                        <a href="${cp}/dashboardra"><i class="fa fa-dashboard fa-fw"></i>Dashboard</a>
+                        <a href="${cp}/dashboard"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                     </li>
 
                     <li>
-                        <a href="${cp}/viewcomplaintra"><i class="fa fa-table fa-fw"></i>View Complaints</a>
+                        <a href="${cp}/studentForm"><i class="fa fa-table fa-fw"></i> Apply for Room</a>
                     </li>
                     <li>
-                        <a href="${cp}/viewapplicationra"><i class="fa fa-edit fa-fw"></i>View Room Applications</a>
+                        <a href="${cp}/complaint"><i class="fa fa-edit fa-fw"></i> Log Complaint</a>
                     </li>
                     <li>
-                        <a href="${cp}/viewstatementra"><i class="fa fa-dashboard fa-fw"></i> Check in/Check out</a>
+                        <a href="${cp}/statement"><i class="fa fa-dashboard fa-fw"></i> Check in/Check out</a>
                     </li>
                     <li>
-                        <a href="${cp}/sendnotice"><i class="fa fa-dashboard fa-fw"></i>Send Notice</a>
+                        <a href="${cp}/logout"><i class="fa"></i> Logout</a>
                     </li>
-
-                    <li>
-                        <a href="${cp}/logout"><i class="fa fa-dashboard fa-fw"></i> Logout</a>
-                    </li>
-
 
                 </ul>
             </div>
@@ -119,35 +114,33 @@
                     </div>
                     <!-- /.panel-heading -->
                     <div class="panel-body">
+
+
                         <div class="dataTable_wrapper">
+
                             <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                 <thead>
                                 <tr>
 
                                     <th>#</th>
-                                    <th>Student Name</th>
-                                    <th>Room</th>
-                                    <th>Category</th>
-                                    <th>Items</th>
+                                    <!--th>Student Name</th-->
+                                    <th>Subject</th>
+                                    <th>Description</th>
+                                    <th>Feedback</th>
                                     <th>Date</th>
-                                    <th></th>
+
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <c:forEach var="statement" items="${statements}" varStatus="theCount">
+                                <c:forEach var="complaint" items="${complaints}" varStatus="theCount">
                                     <tr class="odd gradeX">
                                         <th scope="row">${theCount.count}</th>
-                                        <td>${complaint.studentId.getFname()} ${complaint.studentId.getLname()}</td>
-                                        <td>${statement.roomNo}</td>
-                                        <td>${statement.items}</td>
-                                        <td>${statement.category}</td>
-                                        <%--<td>${statement.statementDates}</td>--%>
-                                        <td class="center">
-                                            <a href="#"
-                                               data-toggle="tooltip" data-placement="top"
-                                               data-id="${statement.id}"
-                                               class="editStatement" id="myBtn${statement.id}">Comment
-                                        </td>
+                                        <!--td>${complaint.studentId}</td -->
+                                        <td>${complaint.subject}</td>
+                                        <td>${complaint.description}</td>
+                                        <td>${complaint.feedBack}</td>
+                                        <td>${complaint.complainDate}</td>
+
                                     </tr>
 
 
@@ -185,10 +178,17 @@
 <!-- Page-Level Demo Scripts - Tables - Use for reference -->
 <script>
     $(document).ready(function () {
+
         $('#dataTables-example').DataTable({
             responsive: true
         });
+
+
     });
+
+
 </script>
+
+
 </body>
 </html>

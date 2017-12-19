@@ -137,11 +137,12 @@
                                 <c:forEach var="statement" items="${statements}" varStatus="theCount">
                                     <tr class="odd gradeX">
                                         <th scope="row">${theCount.count}</th>
-                                        <td>${complaint.studentId.getFname()} ${complaint.studentId.getLname()}</td>
                                         <td>${statement.roomNo}</td>
                                         <td>${statement.items}</td>
                                         <td>${statement.category}</td>
-                                        <%--<td>${statement.statementDates}</td>--%>
+                                        <td>${statement.feedBack}</td>
+                                        <td>${statement.statementDate}</td>
+                                            <%--<td>${statement.statementDates}</td>--%>
                                         <td class="center">
                                             <a href="#"
                                                data-toggle="tooltip" data-placement="top"

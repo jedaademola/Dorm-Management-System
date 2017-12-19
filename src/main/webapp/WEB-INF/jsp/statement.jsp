@@ -142,31 +142,55 @@
                                         <%--<label>Room</label>--%>
                                         <%--<input class="form-control" placeholder="Room number" id="txtRoom">--%>
                                     <%--</div>--%>
-                                    <div class="form-group">
-                                        <label>Category</label>
-                                        <div class="form-group">
-                                        <select class="selectpicker">
-                                            <option>---select---</option>
-                                            <option id ="checkout">Checkout</option>
-                                            <option id = "checkIn">Check in</option>
-                                        </select>
-                                        </div>
-                                    </div>
-
-
-
-
-                                    <div class="form-group">
-                                        <label >Items in the room</label> <br>
-                                        <input type="checkbox" id="chair" value="chair">Chair<br>
-                                        <input type="checkbox" id="desk" value="desk">Desk<br>
-                                        <input type="checkbox" id="wardrobe" value="wardrobe">Wardrobe<br>
-                                        <input type="checkbox" id="bed" value="bed">Bed<br>
-                                        <%--<select multiple="true"class="form-control" id="items" >--%>
-                                            <%--&lt;%&ndash;<option value="0">----Select---</option>&ndash;%&gt;--%>
-                                            <%--<options items="${items}" itemLabel="name" itemValue="id" />--%>
+                                    <%--<div class="form-group">--%>
+                                        <%--<label>Category</label>--%>
+                                        <%--<div class="form-group">--%>
+                                        <%--<select class="selectpicker">--%>
+                                            <%--<option>---select---</option>--%>
+                                            <%--<option id ="checkout">Checkout</option>--%>
+                                            <%--<option id = "checkIn">Check in</option>--%>
                                         <%--</select>--%>
-                                        <%--<div class="error"><errors path="blogCategory" /></div>--%>
+                                        <%--</div>--%>
+                                    <%--</div>--%>
+
+
+
+
+                                    <%--<div class="form-group">--%>
+                                        <%--<label >Items in the room</label> <br>--%>
+                                        <%--<input type="checkbox" id="chair" value="chair">Chair<br>--%>
+                                        <%--<input type="checkbox" id="desk" value="desk">Desk<br>--%>
+                                        <%--<input type="checkbox" id="wardrobe" value="wardrobe">Wardrobe<br>--%>
+                                        <%--<input type="checkbox" id="bed" value="bed">Bed<br>--%>
+                                        <%--&lt;%&ndash;<select multiple="true"class="form-control" id="items" >&ndash;%&gt;--%>
+                                            <%--&lt;%&ndash;&lt;%&ndash;<option value="0">----Select---</option>&ndash;%&gt;&ndash;%&gt;--%>
+                                            <%--&lt;%&ndash;<options items="${items}" itemLabel="name" itemValue="id" />&ndash;%&gt;--%>
+                                        <%--&lt;%&ndash;</select>&ndash;%&gt;--%>
+                                        <%--&lt;%&ndash;<div class="error"><errors path="blogCategory" /></div>&ndash;%&gt;--%>
+                                    <%--</div>--%>
+                                    <%--<div class="form-group">--%>
+                                        <%--<label>Your Student Id</label>--%>
+                                        <%--<input class="form-control" placeholder="Student Number" id="studentId">--%>
+                                    <%--</div>--%>
+                                    <%--<div class="form-group">--%>
+                                        <%--<label>Building No</label>--%>
+                                        <%--<input class="form-control" placeholder="Building Number" id="buildingNo">--%>
+                                    <%--</div>--%>
+                                    <%--<div class="form-group">--%>
+                                        <%--<label>Room No</label>--%>
+                                        <%--<input class="form-control" placeholder="Room Number" id="roomNo">--%>
+                                    <%--</div>--%>
+                                    <%--<div class="form-group">--%>
+                                        <%--<label>Today's Date</label>--%>
+                                        <%--<input type="date" class="form-control" placeholder="Room Number" id="statementDate">--%>
+                                    <%--</div>--%>
+
+                                    <div class="form-group">
+                                        <label>Statement Category</label>
+                                        <select id="category" name="category">
+                                            <option value="checkout">Checkout</option>
+                                            <option value="checkin">Check in</option>
+                                        </select>
                                     </div>
 
                                         <div class="form-group">
@@ -222,12 +246,13 @@
 
         var jsonRequest = {};
 
+        // jsonRequest["studentId"] = $("#studentId").val();
+        // jsonRequest["buildingNo"] = $("#buildingNo").val();
+        // jsonRequest["roomNo"] = $("#roomNo").val();
+        // jsonRequest["statementDate"] = $("#statementDate").val();
         jsonRequest["category"] = $("#checkout").val();
-        jsonRequest["category"] = $("#checkIn").val();
-        jsonRequest["items"] = $("#chair").val();
-        jsonRequest["items"] = $("#desk").val();
-        jsonRequest["items"] = $("#wardrobe").val();
-        jsonRequest["items"] = $("#bed").val();
+        //jsonRequest["category"] = $("#checkIn").val();
+
 
         //jsonRequest["items"] =[ $("#chair").val(), $("#table").val(),$("#bed").val(),$("#wardrobe").val() ];
         // jsonRequest["subject"] = $("#chair").val();

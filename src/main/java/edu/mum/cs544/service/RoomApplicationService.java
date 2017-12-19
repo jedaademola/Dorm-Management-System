@@ -65,6 +65,6 @@ public class RoomApplicationService extends AbstractService<AbstractModel>{
 //    public void approve(long id){
 //        RoomApplicationDAO roomApplicationDAO = (RoomApplicationDAO) dao;
 //        roomApplicationDAO.findByStudentId(id).setStatus(ApplicationStatus.APPROVED);
-
-    //}
+//
+//    }
 }

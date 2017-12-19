@@ -23,6 +23,13 @@ public class StudentService extends AbstractService<AbstractModel> {
         super(dao);
     }
 
+
+    @Transactional
+    public Student getStudentById(long id) {
+        StudentDao studentDao = (StudentDao) dao;
+        return studentDao.getStudentById(id);
+    }
+
     @Transactional
     public void save(Student student) {
         StudentDao studentDao = (StudentDao) dao;
@@ -33,6 +40,13 @@ public class StudentService extends AbstractService<AbstractModel> {
     public void addStudentComplaint(Complain complain) {
         StudentDao studentDao = (StudentDao) dao;
         studentDao.addStudentComplaint(complain);
+    }
+
+
+    @Transactional
+    public int addFeedbackComplaint(Complain complain) {
+        StudentDao studentDao = (StudentDao) dao;
+        return studentDao.addFeedbackComplaint(complain);
     }
 
 

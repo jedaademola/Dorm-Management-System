@@ -119,13 +119,26 @@
                     </div>
                     <!-- /.panel-heading -->
                     <div class="panel-body">
+                        <div class="alert alert-success alert-dismissable" style="display:none"
+                             id="msgAlert">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <div id="resultsSuccess"></div>
+                        </div>
+
+                        <div class="alert alert-danger alert-dismissable" style="display:none"
+                             id="msgAlertFailed">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <div id="resultsError"></div>
+                        </div>
+
                         <div class="dataTable_wrapper">
+
                             <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                 <thead>
                                 <tr>
 
                                     <th>#</th>
-                                    <!--th>Student Name</th-->
+                                    <th>Student Name</th-->
                                     <th>Subject</th>
                                     <th>Description</th>
                                     <th>Feedback</th>
@@ -137,7 +150,7 @@
                                 <c:forEach var="complaint" items="${complaints}" varStatus="theCount">
                                     <tr class="odd gradeX">
                                         <th scope="row">${theCount.count}</th>
-                                        <!--td>${complaint.studentId}</td -->
+                                        <td>${complaint.studentId.getFname()} ${complaint.studentId.getLname()}</td>
                                         <td>${complaint.subject}</td>
                                         <td>${complaint.description}</td>
                                         <td>${complaint.feedBack}</td>
@@ -185,10 +198,121 @@
 <!-- Page-Level Demo Scripts - Tables - Use for reference -->
 <script>
     $(document).ready(function () {
+
         $('#dataTables-example').DataTable({
             responsive: true
         });
+
+
+        $('.editComplaint').click(function () {
+
+            var id = $(this).attr('data-id');
+
+            $('#myModalEdit').find('#complaintId').val(id.split(":")[0]);
+
+            $('#myModalEdit').modal();
+        });
+
+        $(document).on("click", "#btnAddFeedback", function (e) {
+
+            postComment();
+            location.reload();
+
+
+        });
+
+
     });
+
+
+    function postComment() {
+
+        var jsonRequest = {};
+
+        jsonRequest["id"] = $("#complaintId").val();
+        jsonRequest["feedBack"] = $("#txtFeedback").val();
+
+
+        var param = JSON.stringify(jsonRequest);
+        // xhr.setRequestHeader(header, token);
+        $.ajax({
+                url: "${cp}/api/v1/dorm/ra/feedback",
+                type: "POST",
+                dataType: "json",
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader("Accept", "application/json");
+                    xhr.setRequestHeader("Content-Type", "application/json");
+
+                },
+                data: param,
+                success: function (data) {
+
+                    $('#myModalEdit').modal('hide');
+                    $("#resultsSuccess").html(data.description);
+                    document.getElementById("msgAlert").style.display = '';
+                    document.getElementById("msgAlertFailed").style.display = 'none';
+                    setTimeout(
+                        function () {
+                            location.reload();
+                        }, 7000);
+
+
+                }
+                ,
+                error: function (xhr, errorType, exception) {
+
+                    $('#myModalEdit').modal('hide');
+                    document.getElementById("msgAlertFailed").style.display = '';
+                    document.getElementById("msgAlert").style.display = 'none';
+
+                    var responseText = JSON.parse(xhr.responseText);
+
+
+                    $("#resultsError").html(responseText.description);
+
+                }
+            }
+        );
+    }
+
+
 </script>
+
+
+<!-- Modal Edit-->
+<div id="myModalEdit" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Add Feedback</h4>
+            </div>
+            <div class="modal-body">
+                <form:form role="form" id="formComment">
+
+                    <input type="hidden" name="complaintId" value="" id="complaintId"/>
+                    <div class="form-group">
+                        <label>Feedback</label>
+
+                        <textarea class="form-control" rows="3" id="txtFeedback"></textarea>
+                    </div>
+
+
+                </form:form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="btnAddFeedback">Add feedback</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+</div>
+
+
 </body>
 </html>

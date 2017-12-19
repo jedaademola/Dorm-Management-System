@@ -41,15 +41,16 @@ public class StatementDAO extends AbstractDao<AbstractModel> {
     }
 
 
+
     @Override
     public void setDataSource(DataSource dataSource) {
 
     }
 
-    public List<Statement> applicationList(){
-
-        return getSession().createQuery("from Statement where s.category = category").list();
-    }
+//    public List<Statement> applicationList(){
+//
+//        return getSession().createQuery("from Statement where s.category = category").list();
+//    }
 
     public void update(Statement statement) {
         getSession().update(statement);

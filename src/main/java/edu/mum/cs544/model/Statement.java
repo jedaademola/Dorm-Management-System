@@ -4,6 +4,7 @@ import edu.mum.cs544.util.StatementCategory;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -25,12 +26,18 @@ public class Statement implements Serializable {
     @JoinColumn(name = "roomNo")
     private Room roomNo;
 
-    @ElementCollection
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<Item> items;
+//    @ElementCollection
+//    @OneToMany(cascade = CascadeType.ALL)
+//    private List<Item> items;
 
-    //@Enumerated(EnumType.STRING)
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date statementDate;
+
     private String category;
+
+    public Statement(){
+
+    }
 
     public long getId() {
         return id;
@@ -64,13 +71,27 @@ public class Statement implements Serializable {
         this.roomNo = roomNo;
     }
 
-    public List<Item> getItems() {
-        return items;
+//    public List<Item> getItems() {
+//        return items;
+//    }
+//
+//    public void setItems(List<Item> items) {
+//        this.items = items;
+//    }
+
+    public Date getStatementDate() {
+        return statementDate;
     }
 
-    public void setItems(List<Item> items) {
-        this.items = items;
+    public void setStatementDate(Date statementDate) {
+        this.statementDate = statementDate;
     }
 
+    public String  getCategory() {
+        return category;
+    }
 
+    public void setCategory(String category) {
+        this.category = category;
+    }
 }
