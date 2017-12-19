@@ -29,6 +29,7 @@ public class Room {
     }
 
     @ManyToOne
+    @JoinColumn(name = "buildingId")
     private Building building;
 
    // @ManyToOne

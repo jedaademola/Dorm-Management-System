@@ -70,7 +70,7 @@ public class StudentController {
 
         Student userCurrent = TokenService.getCurrentUserFromSecurityContext();
 
-       // Student sTemp = studentService.getStudentById(userCurrent.getId());
+        Student sTemp = studentService.getStudentById(userCurrent.getStudentId());
 
         Student s = new Student();
         s.setStudentId(userCurrent.getStudentId());
@@ -185,7 +185,10 @@ public class StudentController {
 
         RoomApplication data = new RoomApplication();
 
+        //Student sTemp = studentService.getStudentById(userCurrent.getStudentId());
         Student s = new Student();
+        s.setId(userCurrent.getId());
+
         s.setStudentId(userCurrent.getStudentId());
 
         data.setStudent(s);
@@ -194,10 +197,10 @@ public class StudentController {
         Room r = new Room();
 
         b.setBuildingNo(request.getBuildingNo());
-        r.setBuilding(b);
+        //r.setBuilding(b);
         r.setRoomNo(request.getRoomNo());
         data.setRoomNo(r);
-        b.addRoom(r);//TODO WHAT IS THIS
+      //  b.addRoom(r);//TODO WHAT IS THIS
 
 
         data.setBuildingNo(b);

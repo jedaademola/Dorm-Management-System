@@ -25,9 +25,9 @@ public class StudentService extends AbstractService<AbstractModel> {
 
 
     @Transactional
-    public Student getStudentById(long id) {
+    public Student getStudentById(String studentId) {
         StudentDao studentDao = (StudentDao) dao;
-        return studentDao.getStudentById(id);
+        return studentDao.getStudentById(studentId);
     }
 
     @Transactional

@@ -29,10 +29,10 @@ public class StudentDao extends AbstractDao<AbstractModel> {
         return;
     }
 
-    public Student getStudentById(long id) {
+    public Student getStudentById(String studentId) {
 
-        return (Student) getSession().createQuery("from Student where id = :id")
-                .setParameter("id", id)
+        return (Student) getSession().createQuery("from Student where studentId = :studentId")
+                .setParameter("studentId", studentId)
                 .uniqueResult();
     }
 
