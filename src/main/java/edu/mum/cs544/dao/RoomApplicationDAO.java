@@ -43,7 +43,13 @@ public class RoomApplicationDAO extends AbstractDao<AbstractModel>{
         getSession().update(roomApplication);
     }
 
-   
+   public List<RoomApplication> findByStudentId(long id){
+        return getSession().createQuery("from RoomApplication s where s.studentId =:studentId").list();
+   }
+//
+//   public void setStatus(long id){
+//        getSession().
+//   }
 
     @Override
     public void setDataSource(DataSource dataSource) {

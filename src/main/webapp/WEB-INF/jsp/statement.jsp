@@ -157,11 +157,15 @@
 
 
                                     <div class="form-group">
-                                        <label >Items</label>
-                                        <select multiple="true"class="form-control" id="items" >
-                                            <%--<option value="0">----Select---</option>--%>
-                                            <options items="${items}" itemLabel="name" itemValue="id" />
-                                        </select>
+                                        <label >Items in the room</label> <br>
+                                        <input type="checkbox" id="chair" value="chair">Chair<br>
+                                        <input type="checkbox" id="desk" value="desk">Desk<br>
+                                        <input type="checkbox" id="wardrobe" value="wardrobe">Wardrobe<br>
+                                        <input type="checkbox" id="bed" value="bed">Bed<br>
+                                        <%--<select multiple="true"class="form-control" id="items" >--%>
+                                            <%--&lt;%&ndash;<option value="0">----Select---</option>&ndash;%&gt;--%>
+                                            <%--<options items="${items}" itemLabel="name" itemValue="id" />--%>
+                                        <%--</select>--%>
                                         <%--<div class="error"><errors path="blogCategory" /></div>--%>
                                     </div>
 
@@ -219,6 +223,12 @@
         var jsonRequest = {};
 
         jsonRequest["category"] = $("#checkout").val();
+        jsonRequest["category"] = $("#checkIn").val();
+        jsonRequest["items"] = $("#chair").val();
+        jsonRequest["items"] = $("#desk").val();
+        jsonRequest["items"] = $("#wardrobe").val();
+        jsonRequest["items"] = $("#bed").val();
+
         //jsonRequest["items"] =[ $("#chair").val(), $("#table").val(),$("#bed").val(),$("#wardrobe").val() ];
         // jsonRequest["subject"] = $("#chair").val();
         // jsonRequest["description"] = $("#table").val();

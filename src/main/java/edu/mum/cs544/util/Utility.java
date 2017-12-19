@@ -49,16 +49,16 @@ public class Utility {
         else
             return false;
     }
-//    public static List<Item> itemList(){
-//        List<Item> itemList = new ArrayList<>();
-//
-//        itemList.add(new Item(1, "Chair"));
-//        itemList.add(new Item(2, "Desk"));
-//        itemList.add(new Item(3, "Wardrob"));
-//        itemList.add(new Item(4, "Bed"));
-//
-//        return itemList;
-//   }
+    public static List<Item> itemList(){
+        List<Item> itemList = new ArrayList<>();
+
+        itemList.add(new Item(1, "Chair"));
+        itemList.add(new Item(2, "Desk"));
+        itemList.add(new Item(3, "Wardrob"));
+        itemList.add(new Item(4, "Bed"));
+
+        return itemList;
+   }
 
     public static String fileContentsToString(String file) {
         String contents = "";

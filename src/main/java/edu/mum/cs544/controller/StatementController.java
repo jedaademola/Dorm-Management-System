@@ -42,7 +42,7 @@ public class StatementController {
     public ResponseEntity<?> createStatement(@RequestBody @Validated Statement statement) {
 
         //String password = "1234";//Utility.getSaltString();
-        List<Item> items = items = itemService.itemList();
+        List<Item> items = itemService.itemList();
         Student student = new Student();
         Building building = new Building();
         building.setBuildingNo("144");
