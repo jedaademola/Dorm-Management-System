@@ -1,7 +1,9 @@
 package edu.mum.cs544.model;
 
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import java.util.List;
 
 @Entity
 public class Student extends Person {

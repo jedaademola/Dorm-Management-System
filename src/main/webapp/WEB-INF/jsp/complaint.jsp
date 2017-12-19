@@ -193,6 +193,8 @@
         jsonRequest["subject"] = $("#txtSubject").val();
         jsonRequest["description"] = $("#txtBody").val();
 
+         var userJson = JSON.parse(localStorage.getItem("data"));
+         console.log(userJson);
 
         var param = JSON.stringify(jsonRequest);
 
@@ -201,6 +203,7 @@
                 type: "POST",
                 dataType: "json",
                 beforeSend: function (xhr) {
+                      xhr.setRequestHeader("X-Auth-Token", userJson.accessToken);
                     xhr.setRequestHeader("Accept", "application/json");
                     xhr.setRequestHeader("Content-Type", "application/json");
 

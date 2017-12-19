@@ -124,7 +124,7 @@
     <div id="resultsError"></div>
 </div>
 
-                                <div>
+                                <!--div>
                                     <c:if test="${not empty emr}">
                                         <c:choose>
                                             <c:when test="${fn:containsIgnoreCase(emr,'Success')}">
@@ -137,30 +137,30 @@
                                         </c:choose>
 
                                     </c:if>
-                                </div>
-                                <form:form role="form" id="formRoomApplication"
-                                           action="${cp}/api/v1/dorm/student/room/apply" method="POST">
-    <div class="form-group">
-    <label>Building</label>
-        <form:select class="form-control" id="buildingId" path="buildingNo">
-            <form:options items="${buildings}" itemValue="value" itemLabel="label"/>
-    </form:select>
-    </div>
-    <div class="form-group">
-    <label>Room</label>
-        <form:select class="form-control" id="roomNo" path="roomNo">
-            <form:options items="${rooms}" itemValue="value" itemLabel="label"/>
-    </form:select>
-    </div>
-    <div class="form-group">
-    <label>Arrival Date</label>
-        <input class="form-control" placeholder="YYYY-MM-DD" id="txtArivalDate">
-    </div>
+                                </div -->
+                                <form:form role="form" id="formRoomApplication">
+                                    <div class="form-group">
+                                        <label>Building</label>
+                                        <form:select class="form-control" id="buildingId" path="buildingNo">
+                                            <form:options items="${buildings}" itemValue="value" itemLabel="label"/>
+                                        </form:select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Room</label>
+                                        <form:select class="form-control" id="roomNo" path="roomNo">
+                                            <form:options items="${rooms}" itemValue="value" itemLabel="label"/>
+                                        </form:select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Arrival Date</label>
+                                        <input class="form-control" placeholder="YYYY-MM-DD" id="txtArivalDate">
+                                    </div>
 
-    <div class="form-group">
-        <button type="Submit" class="btn btn-outline btn-primary" id="btnApply">Submit Application
-    </button>
-    </div>
+                                    <div class="form-group">
+                                        <button type="button" class="btn btn-outline btn-primary" id="btnApply">Submit
+                                            Application
+                                        </button>
+                                    </div>
 
 
                                 </form:form>
@@ -198,7 +198,7 @@
     $(document).ready(function () {
 
         $(document).on("click", "#btnApply", function (e) {
-            //btnOperation();
+            btnOperation();
         });
 
 
@@ -213,6 +213,8 @@
         jsonRequest["buildingNo"] = $("#buildingId").val();
         jsonRequest["arrivingDate"] = $("#txtArivalDate").val();
 
+         var userJson = JSON.parse(localStorage.getItem("data"));
+         console.log(userJson);
 
         var param = JSON.stringify(jsonRequest);
 
@@ -221,6 +223,7 @@
                 type: "POST",
                 dataType: "json",
                 beforeSend: function (xhr) {
+                     xhr.setRequestHeader("X-Auth-Token", userJson.accessToken);
                     xhr.setRequestHeader("Accept", "application/json");
                     xhr.setRequestHeader("Content-Type", "application/json");
 
