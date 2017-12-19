@@ -6,6 +6,7 @@ import edu.mum.cs544.model.RoomApplication;
 import edu.mum.cs544.model.Student;
 import edu.mum.cs544.service.BuildingRoomService;
 import edu.mum.cs544.service.ComplainService;
+import edu.mum.cs544.service.RoomApplicationService;
 import edu.mum.cs544.service.StudentService;
 import edu.mum.cs544.util.ApplicationStatus;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,9 @@ public class StudentController {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private RoomApplicationService roomApplicationService;
 
 
     @RequestMapping(value = "/api/v1/dorm/student", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE,

@@ -4,17 +4,22 @@ import edu.mum.cs544.model.AbstractModel;
 import edu.mum.cs544.model.RoomApplication;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.sql.DataSource;
 import java.util.List;
-
 @Repository
 @Transactional
 public class RoomApplicationDAO extends AbstractDao<AbstractModel>{
 
+
+    @Autowired
     private SessionFactory _sessionFactory;
+
+
+
     private Session getSession() {
 
         return _sessionFactory.getCurrentSession();
@@ -38,9 +43,7 @@ public class RoomApplicationDAO extends AbstractDao<AbstractModel>{
         getSession().update(roomApplication);
     }
 
-    public RoomApplication findByStudentId(long id){
-        return (RoomApplication) getSession().createQuery("from RoomApplication where studentId =:studentId");
-    }
+   
 
     @Override
     public void setDataSource(DataSource dataSource) {

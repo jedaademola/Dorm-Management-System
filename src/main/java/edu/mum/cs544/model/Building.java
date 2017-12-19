@@ -1,19 +1,15 @@
 package edu.mum.cs544.model;
 
 
-import org.apache.cassandra.config.ColumnDefinition;
-
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
 public class Building {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-   // @Column(ColumnDefinition = Unique(true))
+    @GeneratedValue
     private long id;
     private String buildingNo;
-
     private String location;
 
 
