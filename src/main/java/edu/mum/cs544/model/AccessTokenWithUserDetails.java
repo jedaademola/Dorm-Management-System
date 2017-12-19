@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
 
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -14,8 +13,8 @@ public class AccessTokenWithUserDetails implements Serializable {
     private String accessToken;
 
 
-    @JsonProperty("phoneNumber")
-    private String phoneNumber;
+    @JsonProperty("id")
+    private long id;
 
     @JsonProperty("email")
     private String email;
@@ -27,41 +26,23 @@ public class AccessTokenWithUserDetails implements Serializable {
     @JsonProperty("firstName")
     private String firstName;
 
-    //   @JsonSerialize(using = CustomDateSerializer.class)
-    @JsonProperty("lastLogin")
-    private Timestamp lastLogin;
+    @JsonProperty("category")
+    private String category;
 
 
-    @JsonProperty("passwordExpirationDaysRemaining")
-    private int passwordExpirationDaysRemaining;
-
-    // @JsonSerialize(using = CustomDateSerializer.class)
-    @JsonProperty("failedLoginDate")
-    private Timestamp failedLoginDate;
-
-    //  @JsonSerialize(using = CustomDateSerializer.class)
-    @JsonProperty("passwordChangedOn")
-    private Timestamp passwordChangedOn;
-
-
-    //  @JsonProperty("userCategory")
-    // private UserCategory category;
-
-
-    public AccessTokenWithUserDetails(String token, User user) {
+    public <T> AccessTokenWithUserDetails(String token, T user) {
         this.accessToken = token;
 
-        this.email = user.getEmail();
-        //  this.category = user.getCategory();
+        Person s = (Person) user;
 
-        this.phoneNumber = user.getPhoneNumber();
-        this.firstName = user.getFirstName();
-        this.lastName = user.getLastName();
-        //this.failedLoginDate = user.getFailedLoginDate();
-        //this.lastLogin = user.getLastLogin();
-        //this.passwordChangedOn = user.getPasswordChangedOn();
-        this.passwordExpirationDaysRemaining = user.getPasswordExpirationDaysRemaining();
+        this.email = s.getEmail();
 
+        this.firstName = s.getFname();
+        this.lastName = s.getLname();
+
+        this.category = s.getCategory();
+
+        this.id = s.getId();
 
     }
 

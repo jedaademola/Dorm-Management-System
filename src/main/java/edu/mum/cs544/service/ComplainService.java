@@ -38,6 +38,12 @@ public class ComplainService extends AbstractService<AbstractModel>  {
     }
 
     @Transactional
+    public List<Complain> studentComplains(int studentId) {
+        ComplainDAO complainDAO = (ComplainDAO) dao;
+        return complainDAO.listComplain();
+    }
+
+    @Transactional
     public List<Complain> complainByStudentId(long id){
         ComplainDAO complainDAO = (ComplainDAO) dao;
         return complainDAO.getByStudentId(id);

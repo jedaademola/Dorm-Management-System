@@ -3,6 +3,7 @@ package edu.mum.cs544.dao;
 
 import edu.mum.cs544.model.AbstractModel;
 import edu.mum.cs544.model.Complain;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +46,15 @@ public class ComplainDAO extends AbstractDao<AbstractModel> {
 
     public List<Complain> listComplain() {
         return getSession().createQuery("select c from Complain c").list();
+
+    }
+
+    public List<Complain> studentComplains(int studentId) {
+
+        Query query = getSession().createQuery("from Complain where studentId = :id ");
+        query.setParameter("id", studentId);
+        List<Complain> list = query.list();
+        return list;
 
     }
 

@@ -37,6 +37,13 @@ public class StudentService extends AbstractService<AbstractModel> {
 
 
     @Transactional
+    public int addFeedbackComplaint(Complain complain) {
+        StudentDao studentDao = (StudentDao) dao;
+        return studentDao.addFeedbackComplaint(complain);
+    }
+
+
+    @Transactional
     public void roomApplication(RoomApplication roomApplication) {
         StudentDao studentDao = (StudentDao) dao;
         studentDao.roomApplication(roomApplication);

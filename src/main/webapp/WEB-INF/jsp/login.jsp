@@ -1,5 +1,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <c:set var="cp" value="${pageContext.request.servletContext.contextPath}" scope="request"/>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +13,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Startmin - Bootstrap Admin Theme</title>
+    <title>Dorm Management System: Login</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="${cp}/css/bootstrap.min.css" rel="stylesheet">
@@ -40,14 +44,18 @@
                     <h3 class="panel-title">Please Sign In</h3>
                 </div>
                 <div class="panel-body">
-                    <form role="form">
+                    <form:form role="form" method="POST"
+                               action="${cp}/api/v1/dorm/user/authenticate">
                         <fieldset>
                             <div class="form-group">
-                                <input class="form-control" placeholder="E-mail" name="email" type="email" autofocus>
+                                <form:input class="form-control" placeholder="E-mail" name="email" type="email"
+                                            path="username"/>
+                                
                             </div>
                             <div class="form-group">
-                                <input class="form-control" placeholder="Password" name="password" type="password"
-                                       value="">
+                                <form:input class="form-control" placeholder="Password" name="password" type="password"
+                                            value="" path="password"/>
+                                       
                             </div>
                             <div class="checkbox">
                                 <label>
@@ -55,9 +63,12 @@
                                 </label>
                             </div>
                             <!-- Change this to a button or input when using this as a form -->
-                            <a href="${cp}/index" class="btn btn-lg btn-success btn-block">Login</a>
+                            <div class="form-group">
+                                <button type="button" class="btn btn-outline btn-primary" id="btnLogin">Login
+                                </button>
+                            </div>
                         </fieldset>
-                    </form>
+                    </form:form>
                 </div>
             </div>
         </div>

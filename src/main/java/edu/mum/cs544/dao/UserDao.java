@@ -33,6 +33,12 @@ public class UserDao extends AbstractDao<AbstractModel> {
         return;
     }
 
+    public <T> T loginUser(String username) {
+        return (T) getSession().createQuery("select s from Student s" +
+                " where s.studentId = :username or s.email =:username")
+                .setParameter("username", username)
+                .uniqueResult();
+    }
 
     public List<Users> getAll() {
         return getSession().createQuery("from Users").list();

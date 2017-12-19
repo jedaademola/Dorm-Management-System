@@ -1,13 +1,11 @@
 package edu.mum.cs544.controller;
 
-import edu.mum.cs544.model.Complain;
-import edu.mum.cs544.model.Response;
-import edu.mum.cs544.model.RoomApplication;
-import edu.mum.cs544.model.Student;
+import edu.mum.cs544.model.*;
 import edu.mum.cs544.service.BuildingRoomService;
 import edu.mum.cs544.service.ComplainService;
 import edu.mum.cs544.service.StudentService;
 import edu.mum.cs544.util.ApplicationStatus;
+import edu.mum.cs544.util.UserCategory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -44,6 +42,7 @@ public class StudentController {
         String password = "1234";//Utility.getSaltString();
 
         student.setPassword(passwordEncoder.encode(password));
+        student.setCategory(UserCategory.STUDENT.name());
 
         Response respStudent = new Response();
         studentService.save(student);
@@ -98,6 +97,29 @@ public class StudentController {
     }
 
 
+    @RequestMapping(value = "/viewcomplaintstudent", method = RequestMethod.GET)
+    public ModelAndView viewComplaintStudent() {
+        ModelAndView model = new ModelAndView();
+
+        model.addObject("complaints", complainService.studentComplains(1));//TODO CHANGE THIS
+        model.setViewName("viewcomplaintstudent");
+        return model;
+    }
+
+
+    @RequestMapping(value = "/api/v1/dorm/ra/feedback", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> addFeedback(@RequestBody @Validated Complain complain) {
+
+        Response respStudent = new Response();
+        int result = studentService.addFeedbackComplaint(complain);
+        HttpStatus httpCode = (result > 0) ? HttpStatus.CREATED : HttpStatus.INTERNAL_SERVER_ERROR;
+        respStudent.setDescription((result > 0) ? "Operation successful" : "Operation failed");
+
+        return new ResponseEntity<>(respStudent, httpCode);
+
+    }
+
 
     @RequestMapping(value = "/complaint", method = RequestMethod.GET)
     public ModelAndView complaintForm() {
@@ -119,14 +141,24 @@ public class StudentController {
     }
 
 
-    @RequestMapping(value = "/api/v1/dorm/student/room/applyREST",
+    @RequestMapping(value = "/api/v1/dorm/student/room/apply",
             method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> roomApplicationREST(@RequestBody @Validated RoomApplication data) {
 
         Student s = new Student();
         s.setStudentId("986040");//TODO replace from Session
+
         data.setStudent(s);
+        Building b = new Building();
+        b.setBuildingNo("143");
+        data.setBuildingNo(b);
+
+        Room r = new Room();
+        r.setBuilding(b);
+        r.setRoomNo("1");
+        data.setRoomNo(r);
+
         data.setStatus(ApplicationStatus.PENDING);
         data.setApplicationDate(new Date());
 
@@ -140,7 +172,7 @@ public class StudentController {
 
     }
 
-    @RequestMapping(value = "/api/v1/dorm/student/room/apply", method = RequestMethod.POST)
+    @RequestMapping(value = "/api/v1/dorm/student/room/applyModel", method = RequestMethod.POST)
     public String roomApplication(@ModelAttribute("data") RoomApplication data,
                                   ModelMap model, HttpServletRequest request)
 
