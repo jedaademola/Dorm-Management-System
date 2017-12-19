@@ -29,20 +29,8 @@ public class Statement implements Serializable {
     @OneToMany(cascade = CascadeType.ALL)
     private List<Item> items;
 
-    @Enumerated(EnumType.STRING)
-    private StatementCategory category;
-
-    public StatementCategory getCategory() {
-        return category;
-    }
-
-    public void setCategory(StatementCategory category) {
-        this.category = category;
-    }
-
-    public Statement(){
-
-    }
+    //@Enumerated(EnumType.STRING)
+    private String category;
 
     public long getId() {
         return id;
@@ -50,6 +38,22 @@ public class Statement implements Serializable {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
+    }
+
+    public Building getBuilding() {
+        return building;
+    }
+
+    public void setBuilding(Building building) {
+        this.building = building;
     }
 
     public Room getRoomNo() {
@@ -68,11 +72,5 @@ public class Statement implements Serializable {
         this.items = items;
     }
 
-    public Student getStudent() {
-        return student;
-    }
 
-    public void setStudent(Student student) {
-        this.student = student;
-    }
 }

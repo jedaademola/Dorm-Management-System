@@ -13,6 +13,7 @@ public class Building {
    // @Column(ColumnDefinition = Unique(true))
     private long id;
     private String buildingNo;
+
     private String location;
 
 

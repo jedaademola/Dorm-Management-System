@@ -1,12 +1,11 @@
 package edu.mum.cs544.controller;
 
 import edu.mum.cs544.dao.ItemDAO;
-import edu.mum.cs544.model.Item;
-import edu.mum.cs544.model.Response;
-import edu.mum.cs544.model.Statement;
+import edu.mum.cs544.model.*;
 import edu.mum.cs544.service.ItemService;
 import edu.mum.cs544.service.StatementService;
 import edu.mum.cs544.util.StatementCategory;
+import edu.mum.cs544.util.Utility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -32,17 +31,30 @@ public class StatementController {
     public ModelAndView statementForm() {
         ModelAndView model = new ModelAndView();
 
-        model.addObject("items", itemService.itemList());
+        //model.addObject("items", itemService.itemList());
 
         model.setViewName("statement");
         return model;
     }
 
-    @RequestMapping(value = "/api/v1/dorm/statement", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE,
+    @RequestMapping(value = "/api/v1/dorm/student/statement", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> createStatement(@RequestBody @Validated Statement statement) {
 
         //String password = "1234";//Utility.getSaltString();
+        List<Item> items = items = itemService.itemList();
+        Student student = new Student();
+        Building building = new Building();
+        building.setBuildingNo("144");
+        Room room = new Room();
+        room.setId(108);
+        student.setStudentId("985884");
+        student.setRoom(room);
+        statement.setStudent(student);
+        statement.setBuilding(building);
+        statement.setItems(items);
+       // statement.setCategory(StatementCategory.CHECKIN);
+
 
         //student.setPassword(passwordEncoder.encode(password));
 

@@ -37,9 +37,9 @@ public class Room {
     private Admin admin;
 
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name="itemId")
-    private List<Item>items;
+//    @OneToMany(cascade = CascadeType.ALL)
+//    @JoinColumn(name="itemId")
+//    private List<Item>items;
 
     //Constructor
     public Room() {
@@ -80,11 +80,11 @@ public class Room {
         this.admin = admin;
     }
 
-    public List<Item> getItems() {
-        return items;
-    }
-
-    public void setItems(List<Item> items) {
-        this.items = items;
-    }
+//    public List<Item> getItems() {
+//        return items;
+//    }
+//
+//    public void setItems(List<Item> items) {
+//        this.items = items;
+//    }
 }

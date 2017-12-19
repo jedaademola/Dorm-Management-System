@@ -22,19 +22,19 @@ public class ItemDAO extends AbstractDao<AbstractModel>{
         return _sessionFactory.getCurrentSession();
     }
 
-    public void add(Item item) {
-        getSession().save(item);
-        return;
-    }
-
-    public void delete(Item item) {
-        getSession().delete(item);
-        return;
-    }
+//    public void add(Item item) {
+//        getSession().save(item);
+//        return;
+//    }
+//
+//    public void delete(Item item) {
+//        getSession().delete(item);
+//        return;
+//    }
 
     public List<Item> getAll() {
 
-        return getSession().createQuery("from Item").list();
+        return getSession().createQuery("select i from item i").list();
     }
 
 

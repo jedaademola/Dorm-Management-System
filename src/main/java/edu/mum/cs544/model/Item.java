@@ -49,4 +49,9 @@ public class Item {
 //    }
 
 
+//    public Item(int itemId, String itemName) {
+//        this.itemId = itemId;
+//        this.itemName = itemName;
+//    }
+
 }

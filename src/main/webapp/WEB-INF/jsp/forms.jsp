@@ -150,7 +150,7 @@
                                     <label>Room</label>
                                         <form:select class="form-control" id="roomNo" path="roomNo">
                                             <form:options items="${rooms}" itemValue="value" itemLabel="label"/>
-                                    </form:select>
+                                        </form:select>
                                     </div>
                                     <div class="form-group">
                                     <label>Arrival Date</label>

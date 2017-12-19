@@ -1,6 +1,7 @@
 package edu.mum.cs544.util;
 
 
+import edu.mum.cs544.model.Item;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -12,7 +13,9 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -46,6 +49,16 @@ public class Utility {
         else
             return false;
     }
+//    public static List<Item> itemList(){
+//        List<Item> itemList = new ArrayList<>();
+//
+//        itemList.add(new Item(1, "Chair"));
+//        itemList.add(new Item(2, "Desk"));
+//        itemList.add(new Item(3, "Wardrob"));
+//        itemList.add(new Item(4, "Bed"));
+//
+//        return itemList;
+//   }
 
     public static String fileContentsToString(String file) {
         String contents = "";

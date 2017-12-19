@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.sql.DataSource;
 import java.util.List;
+
 @Repository
 @Transactional
 public class RoomApplicationDAO extends AbstractDao<AbstractModel>{
@@ -38,7 +39,7 @@ public class RoomApplicationDAO extends AbstractDao<AbstractModel>{
     }
 
     public RoomApplication findByStudentId(long id){
-        return (RoomApplication) getSession().createQuery("from application where studentId =:studentId");
+        return (RoomApplication) getSession().createQuery("from RoomApplication where studentId =:studentId");
     }
 
     @Override

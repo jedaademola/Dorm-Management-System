@@ -23,18 +23,18 @@ public class ItemService extends AbstractService<AbstractModel>{
         super(dao);
     }
 
-    @Transactional
-    public void save(Item item) {
-        ItemDAO itemDAO = (ItemDAO) dao;
-        itemDAO.add(item);
-    }
-
-    @Transactional
-    public void delete(Item item){
-        ItemDAO itemDAO = (ItemDAO) dao;
-        itemDAO.delete(item);
-
-    }
+//    @Transactional
+//    public void save(Item item) {
+//        ItemDAO itemDAO = (ItemDAO) dao;
+//        itemDAO.add(item);
+//    }
+//
+//    @Transactional
+//    public void delete(Item item){
+//        ItemDAO itemDAO = (ItemDAO) dao;
+//        itemDAO.delete(item);
+//
+//    }
 
     @Transactional
     public List<Item> itemList(){

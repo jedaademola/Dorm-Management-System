@@ -34,13 +34,7 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <script type="text/javascript">
-        $(function () {
-            $('#items').multiselect({
-                includeSelectAllOption: true
-            });
-        });
-    </script>
+
 
 </head>
 <body>
@@ -132,51 +126,50 @@
                                     <div id="resultsError"></div>
                                 </div>
 
-                                <div>
-                                    <c:if test="${not empty emr}">
-                                        <c:choose>
-                                            <c:when test="${fn:containsIgnoreCase(emr,'Success')}">
-                                                <font color="green" style='vertical-align: auto'>${emr}</font>
-                                            </c:when>
-                                            <c:otherwise>
-                                                <font color="red" style='vertical-align: auto'>${emr}</font>
-                                            </c:otherwise>
 
-                                        </c:choose>
-
-                                    </c:if>
-                                </div>
                                 <form:form role="form" id="checkinAndOut">
+
+
+                                        <%--<div class="form-group">--%>
+                                            <%--<label>Student Number</label>--%>
+                                            <%--<input class="form-control" placeholder="Your student number" id="txtStudentNo">--%>
+                                        <%--</div>--%>
+                                        <%--<div class="form-group">--%>
+                                        <%--<label>Building</label>--%>
+                                        <%--<input class="form-control" placeholder="Building Number" id="txtBuilding">--%>
+                                    <%--</div>--%>
+                                    <%--<div class="form-group">--%>
+                                        <%--<label>Room</label>--%>
+                                        <%--<input class="form-control" placeholder="Room number" id="txtRoom">--%>
+                                    <%--</div>--%>
                                     <div class="form-group">
-                                        <label>Room number</label>
-                                        <form:input path="roomNo" class="form-control" placeholder="Type the number of your room" id="txtSubject">
+                                        <label>Category</label>
+                                        <div class="form-group">
+                                        <select class="selectpicker">
+                                            <option>---select---</option>
+                                            <option id ="checkout">Checkout</option>
+                                            <option id = "checkIn">Check in</option>
+                                        </select>
+                                        </div>
                                     </div>
 
-                                    <div class="form-group">
 
-                                        <label>Check items in the room</label>
-                                        <form:select class="form-control" multiple="multiple" id="items" path="items">
-                                            <form:options items="${items}" itemValue="value" itemLabel="label"/>
-                                        </form:select>
-                                        <%--<input type="checkbox" name="chair" value="Chair"> Chair<BR>--%>
-                                        <%--<input type="checkbox" name="Table" value="Table"> Table<BR>--%>
-                                        <%--<input type="checkbox" name="Bed" value="Bed"> Bed<BR>--%>
-                                        <%--<input type="checkbox" name="wardrobe" value="Wardrobe"> Wardrobe<BR>--%>
-                                        <%--<input type="checkbox" name="mirror" value="Mirror"> Wardrobe<BR>--%>
-                                    </div>
-                                    <label>Category</label>
-                                    <form:option value="Rollover Principal" label="Rollover Principal"/>
-                                    <form:select class="form-control" id="category" path="category">
-                                        <form:option value="CHECK_IN" label="CHECK_IN"/>
-                                        <form:option value="CHECKOUT" label="CHECKOUT"/>
-                                    </form:select>
+
 
                                     <div class="form-group">
-                                        <button type="button" class="btn btn-outline btn-primary" id="btnStatment">
-                                            Submit
-                                        </button>
+                                        <label >Items</label>
+                                        <select multiple="true"class="form-control" id="items" >
+                                            <%--<option value="0">----Select---</option>--%>
+                                            <options items="${items}" itemLabel="name" itemValue="id" />
+                                        </select>
+                                        <%--<div class="error"><errors path="blogCategory" /></div>--%>
                                     </div>
 
+                                        <div class="form-group">
+                                            <button type="button" class="btn btn-outline btn-primary" id="btnStatement">
+                                                Submit
+                                            </button>
+                                        </div>
 
                                 </form:form>
 
@@ -209,11 +202,12 @@
 
 <!-- Custom Theme JavaScript -->
 <script src="${cp}/js/startmin.js"></script>
+
 <script type="text/javascript">
     $(document).ready(function () {
 
         $(document).on("click", "#btnStatement", function (e) {
-            //btnOperation();
+            btnOperation();
         });
 
 
@@ -224,9 +218,12 @@
 
         var jsonRequest = {};
 
-        jsonRequest["roomNo"] = $("#roomNo").val();
-        jsonRequest["items"] = $("#items").val();
-        jsonRequest["category"] = $("#category").val();
+        jsonRequest["category"] = $("#checkout").val();
+        //jsonRequest["items"] =[ $("#chair").val(), $("#table").val(),$("#bed").val(),$("#wardrobe").val() ];
+        // jsonRequest["subject"] = $("#chair").val();
+        // jsonRequest["description"] = $("#table").val();
+        // jsonRequest["subject"] = $("#bed").val();
+        // jsonRequest["description"] = $("#wardrobe").val();
 
 
         var param = JSON.stringify(jsonRequest);
@@ -273,6 +270,7 @@
 
 
 </script>
+
 
 </body>
 </html>
