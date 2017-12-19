@@ -83,7 +83,7 @@ public class StudentController {
     }
 
     @RequestMapping(value = "/dashboard", method = RequestMethod.GET)
-    @PreAuthorize("hasAnyRole('ROLE_STUDENT')")
+    //@PreAuthorize("hasAnyRole('ROLE_STUDENT')")
     public ModelAndView index() {
         ModelAndView model = new ModelAndView();
         model.setViewName("dashboardStudent");
@@ -92,7 +92,7 @@ public class StudentController {
 
 
     @RequestMapping(value = "/dashboardra", method = RequestMethod.GET)
-    @PreAuthorize("hasAnyRole('ROLE_RA')")
+    //@PreAuthorize("hasAnyRole('ROLE_RA')")
     public ModelAndView dashboardRa() {
         ModelAndView model = new ModelAndView();
 
@@ -104,7 +104,7 @@ public class StudentController {
 
 
     @RequestMapping(value = "/viewcomplaintra", method = RequestMethod.GET)
-    @PreAuthorize("hasAnyRole('ROLE_RA')")
+   // @PreAuthorize("hasAnyRole('ROLE_RA')")
     public ModelAndView viewComplaintRa() {
         ModelAndView model = new ModelAndView();
 
@@ -117,7 +117,7 @@ public class StudentController {
 
 
     @RequestMapping(value = "/viewcomplaintstudent", method = RequestMethod.GET)
-    @PreAuthorize("hasAnyRole('ROLE_STUDENT')")
+  //  @PreAuthorize("hasAnyRole('ROLE_STUDENT')")
     public ModelAndView viewComplaintStudent() {
         ModelAndView model = new ModelAndView();
 
@@ -131,7 +131,7 @@ public class StudentController {
 
     @RequestMapping(value = "/api/v1/dorm/ra/feedback", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    @PreAuthorize("hasAnyRole('ROLE_RA')")
+  //  @PreAuthorize("hasAnyRole('ROLE_RA')")
     public ResponseEntity<?> addFeedback(@RequestBody @Validated Complain complain) {
 
         Person userCurrent = TokenService.getCurrentUserFromSecurityContext();
@@ -158,7 +158,7 @@ public class StudentController {
 
 
     @RequestMapping(value = "/studentForm", method = RequestMethod.GET)
-    @PreAuthorize("hasAnyRole('ROLE_STUDENT')")
+    //@PreAuthorize("hasAnyRole('ROLE_STUDENT')")
     public ModelAndView studentForm(@ModelAttribute("command") RoomApplication roomApplication) {
         ModelAndView model = new ModelAndView();
 
@@ -174,7 +174,7 @@ public class StudentController {
     @RequestMapping(value = "/api/v1/dorm/student/room/apply",
             method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    @PreAuthorize("hasAnyRole('ROLE_STUDENT')")
+    //@PreAuthorize("hasAnyRole('ROLE_STUDENT')")
     public ResponseEntity<?> roomApplicationREST(@RequestBody @Validated RoomRequest request) {
 
         Student userCurrent = TokenService.getCurrentUserFromSecurityContext();

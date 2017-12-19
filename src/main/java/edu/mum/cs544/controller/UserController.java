@@ -52,7 +52,7 @@ public class UserController {
 
     @RequestMapping(value = "/logout", method = RequestMethod.POST)
     //@ResponseStatus(value = HttpStatus.OK)
-    @PreAuthorize("hasAnyRole('ROLE_STUDENT','ROLE_RA','ROLE_ADMIN')")
+  //  @PreAuthorize("hasAnyRole('ROLE_STUDENT','ROLE_RA','ROLE_ADMIN')")
     public ModelAndView logout() throws Exception {
 
         ModelAndView model = new ModelAndView();
@@ -76,7 +76,7 @@ public class UserController {
         AuthenticationWithToken authWithToken = null;
         ModelAndView model = new ModelAndView();
         String page = "login";
-        Person user = userService.loginUser(loginRequest.getUsername(), loginRequest.getPassword());
+        Student user = userService.loginUser(loginRequest.getUsername(), loginRequest.getPassword());
 
         if (user != null) {
 

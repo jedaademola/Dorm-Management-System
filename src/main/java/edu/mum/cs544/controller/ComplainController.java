@@ -27,7 +27,7 @@ public class ComplainController {
 
     @RequestMapping(value = "/complain", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    @PreAuthorize("hasAnyRole('ROLE_STUDENT')")
+ //   @PreAuthorize("hasAnyRole('ROLE_STUDENT')")
     public ResponseEntity<?> createComplain(@RequestBody @Validated Complain complain) {
 
         Response respComplain = new Response();
