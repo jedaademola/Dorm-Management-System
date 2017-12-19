@@ -38,6 +38,10 @@ public class BuildingRoomDao extends AbstractDao<AbstractModel> {
 
     }
 
+    public Room getRoomById(int id) {
+        return getSession().load(Room.class, id);
+    }
+
     public List<Room> listRoom(int buildingId) {
 
         return getSession().createQuery("select r from Room r ")  // TODO CHECK THIS

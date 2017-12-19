@@ -44,6 +44,14 @@
                     <h3 class="panel-title">Please Sign In</h3>
                 </div>
                 <div class="panel-body">
+
+                     <div>
+                                    <c:if test="${not empty response}">
+                                       
+                                        <font color="red" style='vertical-align: auto'>${response}</font>
+                                            
+                                    </c:if>
+                                </div>
                     <form:form role="form" method="POST"
                                action="${cp}/api/v1/dorm/user/authenticate">
                         <fieldset>
@@ -64,7 +72,7 @@
                             </div>
                             <!-- Change this to a button or input when using this as a form -->
                             <div class="form-group">
-                                <button type="button" class="btn btn-outline btn-primary" id="btnLogin">Login
+                                <button type="submit" class="btn btn-outline btn-primary" id="btnLogin">Login
                                 </button>
                             </div>
                         </fieldset>

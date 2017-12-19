@@ -20,9 +20,9 @@ public class Building {
     @OneToOne(mappedBy = "building")
     private ResidenceAdvisor ra;
 
-    @ManyToOne
-    @JoinColumn(name="adminId")
-    private Admin admin;
+    //@ManyToOne
+    //@JoinColumn(name="adminId")
+    //private Admin admin;
 
     //Constructor
     public Building() {
@@ -53,13 +53,13 @@ public class Building {
         this.rooms = rooms;
     }
 
-    public Admin getAdmin() {
-        return admin;
-    }
+    //public Admin getAdmin() {
+    //    return admin;
+    //}
 
-    public void setAdmin(Admin admin) {
-        this.admin = admin;
-    }
+    //public void setAdmin(Admin admin) {
+   //     this.admin = admin;
+   // }
 
     public ResidenceAdvisor getRa() {
         return ra;

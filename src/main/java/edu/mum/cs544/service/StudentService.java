@@ -23,6 +23,13 @@ public class StudentService extends AbstractService<AbstractModel> {
         super(dao);
     }
 
+
+    @Transactional
+    public Student getStudentById(long id) {
+        StudentDao studentDao = (StudentDao) dao;
+        return studentDao.getStudentById(id);
+    }
+
     @Transactional
     public void save(Student student) {
         StudentDao studentDao = (StudentDao) dao;

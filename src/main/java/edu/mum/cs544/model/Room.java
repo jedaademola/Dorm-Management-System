@@ -31,9 +31,9 @@ public class Room {
     @ManyToOne
     private Building building;
 
-    @ManyToOne
-    @JoinColumn(name="adminId")
-    private Admin admin;
+   // @ManyToOne
+   // @JoinColumn(name="adminId")
+   // private Admin admin;
 
     //Constructor
     public Room() {
@@ -66,11 +66,11 @@ public class Room {
         this.building = building;
     }
 
-    public Admin getAdmin() {
-        return admin;
-    }
+  //  public Admin getAdmin() {
+   //     return admin;
+ //   }
 
-    public void setAdmin(Admin admin) {
-        this.admin = admin;
-    }
+   // public void setAdmin(Admin admin) {
+   //     this.admin = admin;
+   // }
 }

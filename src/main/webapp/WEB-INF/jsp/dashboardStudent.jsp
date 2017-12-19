@@ -1,5 +1,6 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <c:set var="cp" value="${pageContext.request.servletContext.contextPath}" scope="request"/>
 <!DOCTYPE html>
 <html lang="en">
@@ -222,6 +223,23 @@
 -->
 <!-- Custom Theme JavaScript 
 <script src="${cp}/js/startmin.js" type="text/javascript"></script> -->
+<script type="text/javascript">
+    $(document).ready(function () {
 
+         localStorage.removeItem(localStorage.getItem("data"));
+         
+         var  data = JSON.stringify(${details});
+          //console.log(data);
+
+          localStorage.setItem("data", data);
+
+         // var  data1 = JSON.stringify(${token});
+          //localStorage.setItem("data", data1);
+
+          // console.log(data1);
+
+
+    });
+  </script>  
 </body>
 </html>

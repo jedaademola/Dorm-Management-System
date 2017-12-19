@@ -4,6 +4,7 @@ import edu.mum.cs544.dao.AbstractDao;
 import edu.mum.cs544.dao.UserDao;
 import edu.mum.cs544.model.AbstractModel;
 import edu.mum.cs544.model.Person;
+import edu.mum.cs544.model.Student;
 import edu.mum.cs544.model.Users;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,7 +39,7 @@ public class UserService extends AbstractService<AbstractModel> {
 
         T user = userDao.loginUser(username);
 
-        Person s = (Person) user;
+        Student s = (Student) user;
 
         if (null == user) {
             return null;

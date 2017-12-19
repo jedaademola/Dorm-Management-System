@@ -29,6 +29,12 @@ public class StudentDao extends AbstractDao<AbstractModel> {
         return;
     }
 
+    public Student getStudentById(long id) {
+
+        return (Student) getSession().createQuery("from Student where id = :id")
+                .setParameter("id", id)
+                .uniqueResult();
+    }
 
     public void addStudentComplaint(Complain complain) {
         getSession().save(complain);

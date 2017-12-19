@@ -65,8 +65,7 @@ public class UserController {
     }
 
 
-    @RequestMapping(value = "/authenticate", method = RequestMethod.POST,
-            consumes = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
 
     public ModelAndView loginUser(@ModelAttribute("command") LoginRequest loginRequest, HttpServletRequest request) throws Exception {
         AuthenticationWithToken authWithToken = null;
@@ -89,22 +88,25 @@ public class UserController {
                 page = "dashboardAdmin";
             }
 
-        } else if (user == null) {
+            String newToken = this.tokenService.generateNewToken();
+            authWithToken.setToken(newToken);
+            tokenService.store(newToken, authWithToken);
+            SecurityContextHolder.getContext().setAuthentication(authWithToken);
+
+            AccessTokenWithUserDetails details = new AccessTokenWithUserDetails(newToken, user);
+
+            model.addObject("details", details);
+            model.addObject("      ", newToken);
+
+        }
+        else if (user == null) {
             //NO NEED TO update login failed count and failed login date SINCE IT(USER) DOES NOT EXIST
-            throw new UnauthorizedException(CustomResponseCode.UNAUTHORIZED, "Login details does not exist");
+           // throw new UnauthorizedException(CustomResponseCode.UNAUTHORIZED, "Login details does not exist");
+
+            model.addObject("response", "Login details does not exist");
         }
 
-        String newToken = this.tokenService.generateNewToken();
-        authWithToken.setToken(newToken);
-        tokenService.store(newToken, authWithToken);
-        SecurityContextHolder.getContext().setAuthentication(authWithToken);
-
-        AccessTokenWithUserDetails details = new AccessTokenWithUserDetails(newToken, user);
-
-        model.addObject("details", details);
-        model.addObject("token", newToken);
         model.setViewName(page);
-
         return model;
 
 
