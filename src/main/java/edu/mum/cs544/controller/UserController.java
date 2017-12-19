@@ -86,11 +86,11 @@ public class UserController {
             }
             if (UserCategory.ADMIN.name().equals(user.getCategory())) {
                 authWithToken = new AuthenticationWithToken(user, null, AuthorityUtils.commaSeparatedStringToAuthorityList("ROLE_ADMIN"));
-                page = "dashboardRA";
+                page = "dashboardAdmin" ;
             }
             if (UserCategory.RA.name().equals(user.getCategory())) {
                 authWithToken = new AuthenticationWithToken(user, null, AuthorityUtils.commaSeparatedStringToAuthorityList("ROLE_RA"));
-                page = "dashboardAdmin";
+                page =  "dashboardRA";
             }
 
             String newToken = this.tokenService.generateNewToken();
