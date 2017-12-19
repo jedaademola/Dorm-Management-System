@@ -8,7 +8,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "RoomApplication")
-public class RoomApplication implements Serializable {
+public class  RoomApplication implements Serializable {
 
     @Id
     @GeneratedValue
@@ -21,7 +21,7 @@ public class RoomApplication implements Serializable {
     @OneToOne(cascade = CascadeType.ALL)
     private Building buildingNo;
 
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.ALL)
     @JoinColumn(name = "roomNo")
     private Room roomNo;
 

@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.annotation.Validated;
@@ -82,6 +83,7 @@ public class StudentController {
     }
 
     @RequestMapping(value = "/dashboard", method = RequestMethod.GET)
+    @PreAuthorize("hasAnyRole('ROLE_STUDENT')")
     public ModelAndView index() {
         ModelAndView model = new ModelAndView();
         model.setViewName("dashboardStudent");
@@ -90,6 +92,7 @@ public class StudentController {
 
 
     @RequestMapping(value = "/dashboardra", method = RequestMethod.GET)
+    @PreAuthorize("hasAnyRole('ROLE_RA')")
     public ModelAndView dashboardRa() {
         ModelAndView model = new ModelAndView();
 
@@ -101,6 +104,7 @@ public class StudentController {
 
 
     @RequestMapping(value = "/viewcomplaintra", method = RequestMethod.GET)
+    @PreAuthorize("hasAnyRole('ROLE_RA')")
     public ModelAndView viewComplaintRa() {
         ModelAndView model = new ModelAndView();
 
@@ -113,6 +117,7 @@ public class StudentController {
 
 
     @RequestMapping(value = "/viewcomplaintstudent", method = RequestMethod.GET)
+    @PreAuthorize("hasAnyRole('ROLE_STUDENT')")
     public ModelAndView viewComplaintStudent() {
         ModelAndView model = new ModelAndView();
 
@@ -126,6 +131,7 @@ public class StudentController {
 
     @RequestMapping(value = "/api/v1/dorm/ra/feedback", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
+    @PreAuthorize("hasAnyRole('ROLE_RA')")
     public ResponseEntity<?> addFeedback(@RequestBody @Validated Complain complain) {
 
         Person userCurrent = TokenService.getCurrentUserFromSecurityContext();
@@ -152,6 +158,7 @@ public class StudentController {
 
 
     @RequestMapping(value = "/studentForm", method = RequestMethod.GET)
+    @PreAuthorize("hasAnyRole('ROLE_STUDENT')")
     public ModelAndView studentForm(@ModelAttribute("command") RoomApplication roomApplication) {
         ModelAndView model = new ModelAndView();
 
@@ -167,6 +174,7 @@ public class StudentController {
     @RequestMapping(value = "/api/v1/dorm/student/room/apply",
             method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
+    @PreAuthorize("hasAnyRole('ROLE_STUDENT')")
     public ResponseEntity<?> roomApplicationREST(@RequestBody @Validated RoomRequest request) {
 
         Student userCurrent = TokenService.getCurrentUserFromSecurityContext();
@@ -177,14 +185,22 @@ public class StudentController {
         s.setStudentId(userCurrent.getStudentId());
 
         data.setStudent(s);
-        Building b = new Building();
-        b.setBuildingNo(request.getBuildingNo());
-        data.setBuildingNo(b);
 
+        Building b = new Building();
         Room r = new Room();
+
+        b.setBuildingNo(request.getBuildingNo());
         r.setBuilding(b);
         r.setRoomNo(request.getRoomNo());
         data.setRoomNo(r);
+        b.addRoom(r);//TODO WHAT IS THIS
+
+
+        data.setBuildingNo(b);
+
+
+
+
 
         data.setArrivingDate(request.getArrivingDate());
 

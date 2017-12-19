@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -49,24 +50,28 @@ public class UserController {
         return new ResponseEntity<>(resp, httpCode);
     }
 
-    @RequestMapping(value = "/logout", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseStatus(value = HttpStatus.OK)
-    public boolean logout() throws Exception {
+    @RequestMapping(value = "/logout", method = RequestMethod.POST)
+    //@ResponseStatus(value = HttpStatus.OK)
+    @PreAuthorize("hasAnyRole('ROLE_STUDENT','ROLE_RA','ROLE_ADMIN')")
+    public ModelAndView logout() throws Exception {
+
+        ModelAndView model = new ModelAndView();
+        String page = "";
 
         try {
             AuthenticationWithToken auth = (AuthenticationWithToken) SecurityContextHolder.getContext().getAuthentication();
-            return tokenService.remove(auth.getToken());
+            page = tokenService.remove(auth.getToken()) == true ? "login" : "login";
         } catch (Exception ex) {
             logger.error(ex.getMessage());
             LoggerUtil.logError(logger, ex);
         }
 
-        return false;
+        model.setViewName(page);
+        return model;
     }
 
 
     @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
-
     public ModelAndView loginUser(@ModelAttribute("command") LoginRequest loginRequest, HttpServletRequest request) throws Exception {
         AuthenticationWithToken authWithToken = null;
         ModelAndView model = new ModelAndView();
@@ -96,14 +101,13 @@ public class UserController {
             AccessTokenWithUserDetails details = new AccessTokenWithUserDetails(newToken, user);
 
             model.addObject("details", details);
-            model.addObject("      ", newToken);
 
         }
         else if (user == null) {
             //NO NEED TO update login failed count and failed login date SINCE IT(USER) DOES NOT EXIST
            // throw new UnauthorizedException(CustomResponseCode.UNAUTHORIZED, "Login details does not exist");
 
-            model.addObject("response", "Login details does not exist");
+            model.addObject("response", "Invalid Login details");
         }
 
         model.setViewName(page);
