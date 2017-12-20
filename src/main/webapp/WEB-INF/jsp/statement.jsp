@@ -188,6 +188,7 @@
                                     <div class="form-group">
                                         <label>Statement Category</label>
                                         <select id="category" name="category">
+                                            <option value=" ">---Select one --</option>
                                             <option value="checkout">Checkout</option>
                                             <option value="checkin">Check in</option>
                                         </select>

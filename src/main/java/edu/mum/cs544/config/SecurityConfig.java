@@ -44,7 +44,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
        http.
                // authorizeRequests().antMatchers("/**", "/css/**", "/js/**", "/images/*","/fonts/*","/favicon.ico").
                 authorizeRequests().antMatchers("/*.jsp","/css/**", "/js/**","/images/*","/fonts/*","/favicon.ico","/"
-        ,"/api/v1/dorm/user/authenticate","/signup","/studentForm","/complaint").
+        ,"/api/v1/dorm/user/authenticate","/signup","/studentForm","/complaint","/api/v1/dorm/student","/dashboard",
+               "/dashboardra","/viewcomplaintra","/viewcomplaintstudent","/dashboardAdmin","/applications").
                 permitAll().
                 anyRequest().authenticated().and().
                 csrf().disable().

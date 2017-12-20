@@ -52,7 +52,7 @@ public class UserController {
 
     @RequestMapping(value = "/logout", method = RequestMethod.POST)
     //@ResponseStatus(value = HttpStatus.OK)
-  //  @PreAuthorize("hasAnyRole('ROLE_STUDENT','ROLE_RA','ROLE_ADMIN')")
+    @PreAuthorize("hasAnyRole('ROLE_STUDENT','ROLE_RA','ROLE_ADMIN')")
     public ModelAndView logout() throws Exception {
 
         ModelAndView model = new ModelAndView();
