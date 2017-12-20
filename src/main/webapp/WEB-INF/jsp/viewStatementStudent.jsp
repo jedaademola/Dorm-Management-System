@@ -107,7 +107,7 @@
     <div id="page-wrapper">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">View Complaints</h1>
+                <h1 class="page-header">View Checkout/Check in</h1>
             </div>
             <!-- /.col-lg-12 -->
         </div>
@@ -137,8 +137,8 @@
                                 <c:forEach var="statement" items="${statements}" varStatus="theCount">
                                     <tr class="odd gradeX">
                                         <th scope="row">${theCount.count}</th>
-                                        <td>${statement.studentId.getLname()} ${statement.studentId.getFname()}</td>
-                                        <td>${statement.roomNo}</td>
+                                        <td>${statement.student.getLname()} ${statement.student.getFname()}</td>
+                                        <td>${statement.roomNo.getRoomNo()}</td>
                                             <%--<!-- td>${statement.items}</td-->--%>
                                         <td>${statement.category}</td>
 

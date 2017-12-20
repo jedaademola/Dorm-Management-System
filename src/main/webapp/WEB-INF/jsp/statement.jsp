@@ -72,7 +72,7 @@
                         <!-- /input-group -->
                     </li>
                     <li>
-                        <a href="${cp}/dashboard"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                        <a href="${cp}//dashboardStudent"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                     </li>
 
                     <li>
@@ -86,7 +86,7 @@
                     </li>
 
                     <li>
-                        <a href="${cp}/logout"><i class="fa"></i> Logout</a>
+                        <a href="${cp}/logout"><i class="fa fa-dashboard fa-fw"></i> Logout</a>
                     </li>
 
 
