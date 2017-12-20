@@ -52,7 +52,7 @@ public class UserController {
 
     @RequestMapping(value = "/logout", method = RequestMethod.POST)
     //@ResponseStatus(value = HttpStatus.OK)
-    @PreAuthorize("hasAnyRole('ROLE_STUDENT','ROLE_RA','ROLE_ADMIN')")
+  //  @PreAuthorize("hasAnyRole('ROLE_STUDENT','ROLE_RA','ROLE_ADMIN')")
     public ModelAndView logout() throws Exception {
 
         ModelAndView model = new ModelAndView();
@@ -76,7 +76,7 @@ public class UserController {
         AuthenticationWithToken authWithToken = null;
         ModelAndView model = new ModelAndView();
         String page = "login";
-        Person user = userService.loginUser(loginRequest.getUsername(), loginRequest.getPassword());
+        Student user = userService.loginUser(loginRequest.getUsername(), loginRequest.getPassword());
 
         if (user != null) {
 
@@ -115,5 +115,46 @@ public class UserController {
 
 
     }
+
+
+
+    @RequestMapping(value = "/authenticate/admin", method = RequestMethod.POST)
+    public ModelAndView loginAdminUser(@ModelAttribute("command") LoginRequest loginRequest, HttpServletRequest request) throws Exception {
+        AuthenticationWithToken authWithToken = null;
+        ModelAndView model = new ModelAndView();
+        String page = "login";
+        Admin user = userService.loginAdminUser(loginRequest.getUsername(), loginRequest.getPassword());
+
+        if (user != null) {
+
+
+            if (UserCategory.RA.name().equals(user.getCategory())) {
+                authWithToken = new AuthenticationWithToken(user, null, AuthorityUtils.commaSeparatedStringToAuthorityList("ROLE_RA"));
+                page = "dashboardAdmin";
+            }
+
+            String newToken = this.tokenService.generateNewToken();
+            authWithToken.setToken(newToken);
+            tokenService.store(newToken, authWithToken);
+            SecurityContextHolder.getContext().setAuthentication(authWithToken);
+
+            AccessTokenWithUserDetails details = new AccessTokenWithUserDetails(newToken, user);
+
+            model.addObject("details", details);
+
+        }
+        else if (user == null) {
+            //NO NEED TO update login failed count and failed login date SINCE IT(USER) DOES NOT EXIST
+            // throw new UnauthorizedException(CustomResponseCode.UNAUTHORIZED, "Login details does not exist");
+
+            model.addObject("response", "Invalid Login details");
+        }
+
+        model.setViewName(page);
+        return model;
+
+
+    }
+
 
 }

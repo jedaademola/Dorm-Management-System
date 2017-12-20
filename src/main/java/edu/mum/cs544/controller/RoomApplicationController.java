@@ -24,7 +24,7 @@ public class RoomApplicationController {
 
     @RequestMapping(value = "/roomApplication", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    @PreAuthorize("hasAnyRole('ROLE_STUDENT')")
+   // @PreAuthorize("hasAnyRole('ROLE_STUDENT')")
     public ResponseEntity<?> createRoomApplication(@RequestBody @Validated RoomApplication roomApplication) {
 
         Response respRoomAppliacation = new Response();

@@ -13,6 +13,8 @@ public class Building {
     private String buildingNo;
     private String location;
 
+    @OneToMany(mappedBy = "buildingNo", cascade=CascadeType.REFRESH)
+    private List<RoomApplication> roomApplications;
 
 
     @OneToMany(mappedBy = "building", cascade=CascadeType.ALL)
@@ -28,6 +30,7 @@ public class Building {
     //Constructor
     public Building() {
         rooms = new ArrayList<>();
+        roomApplications  = new ArrayList<>();
     }
     //Getters and Setters
 

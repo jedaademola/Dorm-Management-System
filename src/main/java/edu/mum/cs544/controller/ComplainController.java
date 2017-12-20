@@ -4,6 +4,7 @@ import edu.mum.cs544.model.Complain;
 import edu.mum.cs544.model.Response;
 import edu.mum.cs544.model.Student;
 import edu.mum.cs544.service.ComplainService;
+import edu.mum.cs544.service.TokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -29,6 +30,14 @@ public class ComplainController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     @PreAuthorize("hasAnyRole('ROLE_STUDENT')")
     public ResponseEntity<?> createComplain(@RequestBody @Validated Complain complain) {
+
+        Student userCurrent = TokenService.getCurrentUserFromSecurityContext();
+
+        Student s = new Student();
+        s.setId(userCurrent.getId());
+
+        s.setStudentId(userCurrent.getStudentId());
+        complain.setStudentId(s);
 
         Response respComplain = new Response();
         complainService.save(complain);

@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.ui.ModelMap;
@@ -70,7 +71,7 @@ public class StudentController {
 
         Student userCurrent = TokenService.getCurrentUserFromSecurityContext();
 
-       // Student sTemp = studentService.getStudentById(userCurrent.getId());
+        Student sTemp = studentService.getStudentById(userCurrent.getStudentId());
 
         Student s = new Student();
         s.setStudentId(userCurrent.getStudentId());
@@ -87,7 +88,7 @@ public class StudentController {
     }
 
     @RequestMapping(value = "/dashboard", method = RequestMethod.GET)
-    @PreAuthorize("hasAnyRole('ROLE_STUDENT')")
+    //@PreAuthorize("hasAnyRole('ROLE_STUDENT')")
     public ModelAndView index() {
         ModelAndView model = new ModelAndView();
         model.setViewName("dashboardStudent");
@@ -96,7 +97,7 @@ public class StudentController {
 
 
     @RequestMapping(value = "/dashboardra", method = RequestMethod.GET)
-    @PreAuthorize("hasAnyRole('ROLE_RA')")
+    //@PreAuthorize("hasAnyRole('ROLE_RA')")
     public ModelAndView dashboardRa() {
         ModelAndView model = new ModelAndView();
 
@@ -108,7 +109,7 @@ public class StudentController {
 
 
     @RequestMapping(value = "/viewcomplaintra", method = RequestMethod.GET)
-    @PreAuthorize("hasAnyRole('ROLE_RA')")
+   // @PreAuthorize("hasAnyRole('ROLE_RA')")
     public ModelAndView viewComplaintRa() {
         ModelAndView model = new ModelAndView();
 
@@ -121,7 +122,7 @@ public class StudentController {
 
 
     @RequestMapping(value = "/viewcomplaintstudent", method = RequestMethod.GET)
-    @PreAuthorize("hasAnyRole('ROLE_STUDENT')")
+  //  @PreAuthorize("hasAnyRole('ROLE_STUDENT')")
     public ModelAndView viewComplaintStudent() {
         ModelAndView model = new ModelAndView();
 
@@ -135,7 +136,7 @@ public class StudentController {
 
     @RequestMapping(value = "/api/v1/dorm/ra/feedback", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    @PreAuthorize("hasAnyRole('ROLE_RA')")
+  //  @PreAuthorize("hasAnyRole('ROLE_RA')")
     public ResponseEntity<?> addFeedback(@RequestBody @Validated Complain complain) {
 
         Person userCurrent = TokenService.getCurrentUserFromSecurityContext();
@@ -162,7 +163,7 @@ public class StudentController {
 
 
     @RequestMapping(value = "/studentForm", method = RequestMethod.GET)
-    @PreAuthorize("hasAnyRole('ROLE_STUDENT')")
+       //@Secured("ROLE_STUDENT")
     public ModelAndView studentForm(@ModelAttribute("command") RoomApplication roomApplication) {
         ModelAndView model = new ModelAndView();
 
@@ -185,7 +186,13 @@ public class StudentController {
 
         RoomApplication data = new RoomApplication();
 
+
+        Room rTemp = studentService.getRoomById(request.getRoomNo(),Long.valueOf(request.getBuildingNo()));
+
+
         Student s = new Student();
+        s.setId(userCurrent.getId());
+
         s.setStudentId(userCurrent.getStudentId());
 
         data.setStudent(s);
@@ -193,18 +200,19 @@ public class StudentController {
         Building b = new Building();
         Room r = new Room();
 
-        b.setBuildingNo(request.getBuildingNo());
+        r.setStudent(s);
+
+
+        b.setId(Long.valueOf(request.getBuildingNo()));
+        b.setBuildingNo( rTemp.getBuilding().getBuildingNo());
+        b.setLocation( rTemp.getBuilding().getLocation());
+
         r.setBuilding(b);
-        r.setRoomNo(request.getRoomNo());
+        r.setId(Integer.valueOf(request.getRoomNo()));
+        r.setRoomNo(rTemp.getRoomNo());
+
         data.setRoomNo(r);
-        b.addRoom(r);//TODO WHAT IS THIS
-
-
         data.setBuildingNo(b);
-
-
-
-
 
         data.setArrivingDate(request.getArrivingDate());
 

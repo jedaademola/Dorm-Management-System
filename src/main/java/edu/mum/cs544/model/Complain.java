@@ -17,10 +17,10 @@ public class Complain implements Serializable{
 
     private String description;
 
-    @Valid
+    //@Valid
     //unidirectional relationship
-    @ManyToOne(cascade = CascadeType.ALL)
-    //@JoinColumn(name = "studentId")
+    @ManyToOne //(cascade = CascadeType.ALL)
+    @JoinColumn(name = "studentId")
     private Student studentId;
 
     @Temporal(TemporalType.DATE)

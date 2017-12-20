@@ -49,22 +49,25 @@ public class RoomApplicationService extends AbstractService<AbstractModel>{
         roomApplicationDAO.update(roomApplication);
     }
 
-    @Transactional
+  /*  @Transactional
     public List<RoomApplication> byStudentId(long id){
         RoomApplicationDAO roomApplicationDAO = (RoomApplicationDAO) dao;
         return (List<RoomApplication>) roomApplicationDAO.findByStudentId(id);
     }
+*/
+    /*@Transactional
+    public void reject(long id){
+        RoomApplicationDAO roomApplicationDAO = (RoomApplicationDAO) dao;
+        roomApplicationDAO.findByStudentId(id).setStatus(ApplicationStatus.DENIED);
 
-//    @Transactional
-//    public void reject(long id){
-//        RoomApplicationDAO roomApplicationDAO = (RoomApplicationDAO) dao;
-//        roomApplicationDAO.findByStudentId(id).setStatus(ApplicationStatus.DENIED);
-//
-//    }
-//    @Transactional
-//    public void approve(long id){
-//        RoomApplicationDAO roomApplicationDAO = (RoomApplicationDAO) dao;
-//        roomApplicationDAO.findByStudentId(id).setStatus(ApplicationStatus.APPROVED);
-//
-//    }
+    }
+    */
+    /*
+    @Transactional
+    public void approve(long id){
+        RoomApplicationDAO roomApplicationDAO = (RoomApplicationDAO) dao;
+        roomApplicationDAO.findByStudentId(id).setStatus(ApplicationStatus.APPROVED);
+
+    }
+    \*/
 }

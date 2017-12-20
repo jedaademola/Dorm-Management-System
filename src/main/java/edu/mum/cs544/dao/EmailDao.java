@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.sql.DataSource;
 import java.util.List;
@@ -19,6 +20,7 @@ import java.util.List;
 
 
 @Repository
+@Transactional
 public class EmailDao extends AbstractDao<AbstractModel> {
 
 //String sender, String recipient, String subject, String contentType, String content,

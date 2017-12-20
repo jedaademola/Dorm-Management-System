@@ -6,6 +6,8 @@ package edu.mum.cs544.model;
 
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Room {
@@ -20,9 +22,6 @@ public class Room {
     @JoinColumn(name = "studentId")
     private Student student;
 
-    @ManyToOne
-    private Building building;
-
     public Student getStudent() {
         return student;
     }
@@ -31,16 +30,26 @@ public class Room {
         this.student = student;
     }
 
+    @ManyToOne
+    @JoinColumn(name = "buildingId")
+    private Building building;
 
+    @OneToOne(mappedBy = "roomNo", cascade=CascadeType.REFRESH)
+    private RoomApplication roomApplications;
 
-   // @ManyToOne
-   // @JoinColumn(name="adminId")
-   // private Admin admin;
+    public RoomApplication getRoomApplications() {
+        return roomApplications;
+    }
+
+    public void setRoomApplications(RoomApplication roomApplications) {
+        this.roomApplications = roomApplications;
+    }
 
     //Constructor
     public Room() {
+
     }
-    //Getters and Setters
+
 
     public int getId() {
         return id;
