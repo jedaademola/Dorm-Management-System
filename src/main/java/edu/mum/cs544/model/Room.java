@@ -6,8 +6,6 @@ package edu.mum.cs544.model;
 
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 public class Room {
@@ -20,6 +18,7 @@ public class Room {
 
     @OneToOne
     @JoinColumn(name = "studentId")
+    @Basic(optional = true)
     private Student student;
 
     public Student getStudent() {
