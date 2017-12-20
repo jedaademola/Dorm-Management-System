@@ -128,26 +128,21 @@
                                     <th>Student Name</th>
                                     <th>Room</th>
                                     <th>Category</th>
-                                    <th>Items</th>
+                                    <!--th>Items</th-->
                                     <th>Date</th>
-                                    <th></th>
+
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <c:forEach var="statement" items="${statements}" varStatus="theCount">
                                     <tr class="odd gradeX">
                                         <th scope="row">${theCount.count}</th>
-                                        <td>${complaint.studentId.getFname()} ${complaint.studentId.getLname()}</td>
+                                        <td>${statement.studentId.getFname()} ${statement.studentId.getLname()}</td>
                                         <td>${statement.roomNo}</td>
-                                        <td>${statement.items}</td>
+                                            <%--<td>${statement.items}</td>--%>
                                         <td>${statement.category}</td>
-                                        <%--<td>${statement.statementDates}</td>--%>
-                                        <td class="center">
-                                            <a href="#"
-                                               data-toggle="tooltip" data-placement="top"
-                                               data-id="${statement.id}"
-                                               class="editStatement" id="myBtn${statement.id}">Comment
-                                        </td>
+                                        <td>${statement.statementDate}</td>
+
                                     </tr>
 
 

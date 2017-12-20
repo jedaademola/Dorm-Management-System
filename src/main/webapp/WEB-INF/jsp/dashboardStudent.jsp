@@ -71,7 +71,7 @@
                         <!-- /input-group -->
                     </li>
                     <li>
-                        <a href="${cp}/dashboard"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                        <a href="${cp}/dashboardStudent"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                     </li>
 
                     <li>
@@ -183,11 +183,11 @@
                             </div>
                             <div class="col-xs-9 text-right">
                                 <div class="huge">13</div>
-                                <div>Events!</div>
+                                <div>Statements!</div>
                             </div>
                         </div>
                     </div>
-                    <a href="#">
+                    <a href="${cp}/statements">
                         <div class="panel-footer">
                             <span class="pull-left">View Details</span>
                             <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>

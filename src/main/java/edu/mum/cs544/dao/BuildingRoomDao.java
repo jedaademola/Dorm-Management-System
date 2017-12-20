@@ -37,8 +37,11 @@ public class BuildingRoomDao extends AbstractDao<AbstractModel> {
         return buildings;
 
     }
-    public Room getRoomByStudentId(String studentId){
-        return (Room) getSession().createQuery("select r from Room r where r.studentId=:studentId");
+
+    public Room getRoomByStudentId(long studentId) {
+        return (Room) getSession().createQuery("from Room where studentId=:studentId")
+                .setParameter("studentId", studentId)
+                .uniqueResult();
     }
 
 //    public Building getBuildingByRoom(Room roomNo){

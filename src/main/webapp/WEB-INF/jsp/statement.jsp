@@ -154,20 +154,13 @@
                                     <%--</div>--%>
 
 
-
-
-                                    <%--<div class="form-group">--%>
-                                        <%--<label >Items in the room</label> <br>--%>
-                                        <%--<input type="checkbox" id="chair" value="chair">Chair<br>--%>
-                                        <%--<input type="checkbox" id="desk" value="desk">Desk<br>--%>
-                                        <%--<input type="checkbox" id="wardrobe" value="wardrobe">Wardrobe<br>--%>
-                                        <%--<input type="checkbox" id="bed" value="bed">Bed<br>--%>
-                                        <%--&lt;%&ndash;<select multiple="true"class="form-control" id="items" >&ndash;%&gt;--%>
-                                            <%--&lt;%&ndash;&lt;%&ndash;<option value="0">----Select---</option>&ndash;%&gt;&ndash;%&gt;--%>
-                                            <%--&lt;%&ndash;<options items="${items}" itemLabel="name" itemValue="id" />&ndash;%&gt;--%>
-                                        <%--&lt;%&ndash;</select>&ndash;%&gt;--%>
-                                        <%--&lt;%&ndash;<div class="error"><errors path="blogCategory" /></div>&ndash;%&gt;--%>
-                                    <%--</div>--%>
+                                    <div class="form-group">
+                                        <label>Items in the room</label> <br>
+                                        <input type="checkbox" id="chair" value="chair">Chair<br>
+                                        <input type="checkbox" id="desk" value="desk">Desk<br>
+                                        <input type="checkbox" id="wardrobe" value="wardrobe">Wardrobe<br>
+                                        <input type="checkbox" id="bed" value="bed">Bed<br>
+                                    </div>
                                     <%--<div class="form-group">--%>
                                         <%--<label>Your Student Id</label>--%>
                                         <%--<input class="form-control" placeholder="Student Number" id="studentId">--%>
@@ -247,19 +240,11 @@
 
         var jsonRequest = {};
 
-        // jsonRequest["studentId"] = $("#studentId").val();
-        // jsonRequest["buildingNo"] = $("#buildingNo").val();
-        // jsonRequest["roomNo"] = $("#roomNo").val();
-        // jsonRequest["statementDate"] = $("#statementDate").val();
-        jsonRequest["category"] = $("#checkout").val();
-        //jsonRequest["category"] = $("#checkIn").val();
 
+        jsonRequest["category"] = $("#category").val();
 
-        //jsonRequest["items"] =[ $("#chair").val(), $("#table").val(),$("#bed").val(),$("#wardrobe").val() ];
-        // jsonRequest["subject"] = $("#chair").val();
-        // jsonRequest["description"] = $("#table").val();
-        // jsonRequest["subject"] = $("#bed").val();
-        // jsonRequest["description"] = $("#wardrobe").val();
+        var userJson = JSON.parse(localStorage.getItem("data"));
+        console.log(userJson);
 
 
         var param = JSON.stringify(jsonRequest);
@@ -269,6 +254,7 @@
                 type: "POST",
                 dataType: "json",
                 beforeSend: function (xhr) {
+                    xhr.setRequestHeader("X-Auth-Token", userJson.accessToken);
                     xhr.setRequestHeader("Accept", "application/json");
                     xhr.setRequestHeader("Content-Type", "application/json");
 

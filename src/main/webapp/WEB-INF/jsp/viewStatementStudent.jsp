@@ -128,7 +128,7 @@
                                     <th>Student Name</th>
                                     <th>Room</th>
                                     <th>Category</th>
-                                    <th>Items</th>
+                                    <!--th>Items</th -->
                                     <th>Date</th>
                                     <th></th>
                                 </tr>
@@ -137,10 +137,11 @@
                                 <c:forEach var="statement" items="${statements}" varStatus="theCount">
                                     <tr class="odd gradeX">
                                         <th scope="row">${theCount.count}</th>
+                                        <td>${statement.studentId.getLname()} ${statement.studentId.getFname()}</td>
                                         <td>${statement.roomNo}</td>
-                                        <td>${statement.items}</td>
+                                            <%--<!-- td>${statement.items}</td-->--%>
                                         <td>${statement.category}</td>
-                                        <td>${statement.feedBack}</td>
+
                                         <td>${statement.statementDate}</td>
                                             <%--<td>${statement.statementDates}</td>--%>
                                         <td class="center">

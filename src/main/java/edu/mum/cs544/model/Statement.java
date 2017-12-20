@@ -1,9 +1,8 @@
 package edu.mum.cs544.model;
 
-import edu.mum.cs544.util.StatementCategory;
-
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -26,17 +25,20 @@ public class Statement implements Serializable {
     @JoinColumn(name = "roomNo")
     private Room roomNo;
 
-//    @ElementCollection
-//    @OneToMany(cascade = CascadeType.ALL)
-//    private List<Item> items;
+
+    @ElementCollection
+    private List<Item> items = new ArrayList<Item>();
+
+    //   public List<Item> getItems() {
+    //   return Collections.unmodifiableList(items);
+    // }
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date statementDate;
 
     private String category;
 
-    public Statement(){
-
+    public Statement() {
     }
 
     public long getId() {
@@ -71,13 +73,13 @@ public class Statement implements Serializable {
         this.roomNo = roomNo;
     }
 
-//    public List<Item> getItems() {
-//        return items;
-//    }
-//
-//    public void setItems(List<Item> items) {
-//        this.items = items;
-//    }
+    public List<Item> getItems() {
+        return items;
+    }
+
+    public void setItems(List<Item> items) {
+        this.items = items;
+    }
 
     public Date getStatementDate() {
         return statementDate;

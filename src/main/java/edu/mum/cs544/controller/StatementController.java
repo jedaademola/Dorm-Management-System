@@ -1,24 +1,22 @@
 package edu.mum.cs544.controller;
 
-import edu.mum.cs544.dao.ItemDAO;
 import edu.mum.cs544.model.*;
 import edu.mum.cs544.service.BuildingRoomService;
-import edu.mum.cs544.service.ItemService;
 import edu.mum.cs544.service.StatementService;
 import edu.mum.cs544.service.TokenService;
-import edu.mum.cs544.util.StatementCategory;
 import edu.mum.cs544.util.Utility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -47,17 +45,24 @@ public class StatementController {
 
     @RequestMapping(value = "/api/v1/dorm/student/statement", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-   //@PreAuthorize("hasAnyRole('ROLE_STUDENT')")
+    @PreAuthorize("hasAnyRole('ROLE_STUDENT')")
     public ResponseEntity<?> createStatement(@RequestBody @Validated Statement statement) {
 
         Student userCurrent = TokenService.getCurrentUserFromSecurityContext();
         Student s = new Student();
         s.setId(userCurrent.getId());
         s.setStudentId(userCurrent.getStudentId());
-        Room roomNo = buildingRoomService.getRoomByStudentId(userCurrent.getStudentId());
+
+        Room roomNo = buildingRoomService.getRoomByStudentId(userCurrent.getId());
+
+        statement.setStudent(s);
+
         statement.setRoomNo(roomNo);
         statement.setBuilding(roomNo.getBuilding());
         statement.setStatementDate(new Date());
+
+        List<Item> items = Utility.itemList();
+        statement.setItems(items);
 
         //statement.setBuilding(buildingRoomService.);
         //Building building = buildingRoomService.
@@ -71,7 +76,7 @@ public class StatementController {
 //        student.setRoom(room);
 //        statement.setStudent(student);
 //        statement.setBuilding(building);
-//       // statement.setItems(items);
+
 //       // statement.setCategory(StatementCategory.CHECKIN);
 //
 //
@@ -89,7 +94,9 @@ public class StatementController {
     @RequestMapping(value = "/statements", method = RequestMethod.GET)
     public ModelAndView statementList(){
         ModelAndView model = new ModelAndView();
-        model.addObject(statementService.statementList());
+        List<Statement> lists = statementService.statementList();
+        model.addObject("statements", lists);
+        model.setViewName("viewStatementStudent");
         return model;
     }
 //    @RequestMapping(value = "/applicationList", method =  RequestMethod.GET)

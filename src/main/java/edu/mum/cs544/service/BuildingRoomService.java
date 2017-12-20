@@ -35,7 +35,7 @@ public class BuildingRoomService extends AbstractService<AbstractModel> {
         return buildingRoomDao.getRoomById(id);
     }
     @Transactional
-    public Room getRoomByStudentId(String studentId){
+    public Room getRoomByStudentId(long studentId) {
         BuildingRoomDao buildingRoomDao = (BuildingRoomDao) dao;
         return buildingRoomDao.getRoomByStudentId(studentId);
 
