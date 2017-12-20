@@ -18,6 +18,8 @@ public class Student extends Person {
     @OneToMany(mappedBy = "studentId", cascade= CascadeType.ALL)
     private  List<Complain> complains;
 
+
+
     //Constructor
     public Student() {
         complains = new ArrayList<>();
