@@ -70,6 +70,8 @@ public class AdminController {
         model.setViewName("dashboardAdmin");
         return model;
     }
+
+
     @RequestMapping(value = "/applications", method = RequestMethod.GET)
     public ModelAndView viewApplications() {
         ModelAndView model = new ModelAndView();

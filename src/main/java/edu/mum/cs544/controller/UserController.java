@@ -122,7 +122,7 @@ public class UserController {
     public ModelAndView loginAdminUser(@ModelAttribute("command") LoginRequest loginRequest, HttpServletRequest request) throws Exception {
         AuthenticationWithToken authWithToken = null;
         ModelAndView model = new ModelAndView();
-        String page = "login";
+        String page = "loginAdmin";
         Admin user = userService.loginAdminUser(loginRequest.getUsername(), loginRequest.getPassword());
 
         if (user != null) {
