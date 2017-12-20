@@ -2,8 +2,6 @@ package edu.mum.cs544.controller;
 
 import edu.mum.cs544.model.*;
 import edu.mum.cs544.security.AuthenticationWithToken;
-import edu.mum.cs544.service.AdminService;
-import edu.mum.cs544.service.RoomApplicationService;
 import edu.mum.cs544.service.TokenService;
 import edu.mum.cs544.service.UserService;
 import edu.mum.cs544.util.LoggerUtil;
@@ -36,10 +34,6 @@ public class UserController {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
-    @Autowired
-    private AdminService adminService;
-    @Autowired
-    private RoomApplicationService roomApplicationService;
 
 
     @RequestMapping(value = "/create", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE,
@@ -158,24 +152,6 @@ public class UserController {
         return model;
 
 
-    }
-
-    @RequestMapping(value = "/dashboardAdmin", method = RequestMethod.GET)
-    //@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
-    public ModelAndView index() {
-        ModelAndView model = new ModelAndView();
-        model.setViewName("dashboardAdmin");
-        return model;
-    }
-
-
-    @RequestMapping(value = "/applications", method = RequestMethod.GET)
-    //@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
-    public ModelAndView viewApplications() {
-        ModelAndView model = new ModelAndView();
-        model.addObject("Application", roomApplicationService.roomApplications());
-        model.setViewName("roomApplcations");
-        return model;
     }
 
 }

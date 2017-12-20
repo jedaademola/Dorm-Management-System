@@ -1,18 +1,13 @@
 package edu.mum.cs544.controller;
 
 import edu.mum.cs544.model.*;
-import edu.mum.cs544.service.BuildingRoomService;
-import edu.mum.cs544.service.ComplainService;
-import edu.mum.cs544.service.RoomApplicationService;
-import edu.mum.cs544.service.StudentService;
-import edu.mum.cs544.service.TokenService;
+import edu.mum.cs544.service.*;
 import edu.mum.cs544.util.ApplicationStatus;
 import edu.mum.cs544.util.UserCategory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.ui.ModelMap;
@@ -38,11 +33,13 @@ public class StudentController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-
+    @Autowired
     private TokenService tokenService;
 
+    @Autowired
+    private AdminService adminService;
+    @Autowired
     private RoomApplicationService roomApplicationService;
-
 
 
     @RequestMapping(value = "/api/v1/dorm/student", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE,
@@ -250,6 +247,25 @@ public class StudentController {
         //return modelandView;
 
     }
+
+    @RequestMapping(value = "/dashboardAdmin", method = RequestMethod.GET)
+    //@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
+    public ModelAndView indexAdmin() {
+        ModelAndView model = new ModelAndView();
+        model.setViewName("dashboardAdmin");
+        return model;
+    }
+
+
+    @RequestMapping(value = "/applications", method = RequestMethod.GET)
+    //@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
+    public ModelAndView viewApplications() {
+        ModelAndView model = new ModelAndView();
+        model.addObject("Application", roomApplicationService.roomApplications());
+        model.setViewName("roomApplcations");
+        return model;
+    }
+
 
 
 }
