@@ -19,8 +19,8 @@ public class Complain implements Serializable{
 
     @Valid
     //unidirectional relationship
-    @ManyToOne(cascade = CascadeType.ALL)
-    //@JoinColumn(name = "studentId")
+    @ManyToOne //(cascade = CascadeType.ALL)
+    @JoinColumn(name = "studentId")
     private Student studentId;
 
     @Temporal(TemporalType.DATE)

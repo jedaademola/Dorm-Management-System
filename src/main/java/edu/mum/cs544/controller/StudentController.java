@@ -163,9 +163,7 @@ public class StudentController {
 
 
     @RequestMapping(value = "/studentForm", method = RequestMethod.GET)
-    //@PreAuthorize("hasAnyRole('ROLE_STUDENT')")
-    //@PreAuthorize("hasAuthority('ROLE_ANONYMOUS')")
-    //@Secured("ROLE_STUDENT")
+       //@Secured("ROLE_STUDENT")
     public ModelAndView studentForm(@ModelAttribute("command") RoomApplication roomApplication) {
         ModelAndView model = new ModelAndView();
 

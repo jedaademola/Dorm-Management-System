@@ -15,7 +15,7 @@ public class Student extends Person {
     @OneToOne(mappedBy = "student", cascade= CascadeType.ALL)
     private Room room;
 
-    @OneToMany(mappedBy = "studentId", cascade= CascadeType.REFRESH)
+    @OneToMany(mappedBy = "studentId", cascade= CascadeType.ALL)
     private  List<Complain> complains;
 
     //Constructor
