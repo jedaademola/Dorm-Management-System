@@ -3,7 +3,6 @@ package edu.mum.cs544.controller;
 
 import edu.mum.cs544.model.Admin;
 import edu.mum.cs544.model.Response;
-import edu.mum.cs544.model.Student;
 import edu.mum.cs544.service.AdminService;
 import edu.mum.cs544.service.RoomApplicationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,25 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import edu.mum.cs544.model.Complain;
-import edu.mum.cs544.model.Response;
-import edu.mum.cs544.model.RoomApplication;
-import edu.mum.cs544.model.Student;
-import edu.mum.cs544.service.*;
-import edu.mum.cs544.util.ApplicationStatus;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.ui.ModelMap;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
-import javax.servlet.http.HttpServletRequest;
-import java.util.Date;
 
 @RestController
 public class AdminController {
