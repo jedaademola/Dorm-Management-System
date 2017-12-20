@@ -2,10 +2,7 @@ package edu.mum.cs544.service;
 
 import edu.mum.cs544.dao.AbstractDao;
 import edu.mum.cs544.dao.StudentDao;
-import edu.mum.cs544.model.AbstractModel;
-import edu.mum.cs544.model.Complain;
-import edu.mum.cs544.model.RoomApplication;
-import edu.mum.cs544.model.Student;
+import edu.mum.cs544.model.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,6 +51,14 @@ public class StudentService extends AbstractService<AbstractModel> {
     public void roomApplication(RoomApplication roomApplication) {
         StudentDao studentDao = (StudentDao) dao;
         studentDao.roomApplication(roomApplication);
+    }
+
+    @Transactional
+    public Room getRoomById(String roomNo,long buildingId)
+    {
+        StudentDao studentDao = (StudentDao) dao;
+        return studentDao.getRoomById(roomNo,buildingId);
+
     }
 
 }

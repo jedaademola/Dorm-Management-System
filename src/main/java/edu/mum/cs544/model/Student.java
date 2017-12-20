@@ -4,6 +4,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -14,16 +15,18 @@ public class Student extends Person {
     @OneToOne(mappedBy = "student", cascade= CascadeType.ALL)
     private Room room;
 
+    @OneToMany(mappedBy = "studentId", cascade= CascadeType.REFRESH)
+    private  List<Complain> complains;
 
     //Constructor
     public Student() {
+        complains = new ArrayList<>();
     }
 
     @Override
     public String toString() {
         return studentId;
     }
-//Getters and Setters
 
 
     public String getStudentId() {

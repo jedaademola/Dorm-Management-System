@@ -1,9 +1,6 @@
 package edu.mum.cs544.dao;
 
-import edu.mum.cs544.model.AbstractModel;
-import edu.mum.cs544.model.Complain;
-import edu.mum.cs544.model.RoomApplication;
-import edu.mum.cs544.model.Student;
+import edu.mum.cs544.model.*;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -53,10 +50,19 @@ public class StudentDao extends AbstractDao<AbstractModel> {
     }
 
     public void roomApplication(RoomApplication roomApplication) {
+
         getSession().save(roomApplication);
         return;
     }
 
+
+    public Room getRoomById(String roomNo,long buildingId) {
+
+        return (Room) getSession().createQuery("from Room where roomNo = :roomNo and buildingId =:buildingId")
+                .setParameter("roomNo", roomNo)
+                .setParameter("buildingId", buildingId)
+                .uniqueResult();
+    }
     @Override
     public void setDataSource(DataSource dataSource) {
 

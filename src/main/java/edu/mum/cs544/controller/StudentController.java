@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.ui.ModelMap;
@@ -163,6 +164,8 @@ public class StudentController {
 
     @RequestMapping(value = "/studentForm", method = RequestMethod.GET)
     //@PreAuthorize("hasAnyRole('ROLE_STUDENT')")
+    //@PreAuthorize("hasAuthority('ROLE_ANONYMOUS')")
+    //@Secured("ROLE_STUDENT")
     public ModelAndView studentForm(@ModelAttribute("command") RoomApplication roomApplication) {
         ModelAndView model = new ModelAndView();
 
@@ -178,14 +181,17 @@ public class StudentController {
     @RequestMapping(value = "/api/v1/dorm/student/room/apply",
             method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    //@PreAuthorize("hasAnyRole('ROLE_STUDENT')")
+    @PreAuthorize("hasAnyRole('ROLE_STUDENT')")
     public ResponseEntity<?> roomApplicationREST(@RequestBody @Validated RoomRequest request) {
 
         Student userCurrent = TokenService.getCurrentUserFromSecurityContext();
 
         RoomApplication data = new RoomApplication();
 
-        //Student sTemp = studentService.getStudentById(userCurrent.getStudentId());
+
+        Room rTemp = studentService.getRoomById(request.getRoomNo(),Long.valueOf(request.getBuildingNo()));
+
+
         Student s = new Student();
         s.setId(userCurrent.getId());
 
@@ -196,18 +202,19 @@ public class StudentController {
         Building b = new Building();
         Room r = new Room();
 
-        b.setBuildingNo(request.getBuildingNo());
-        //r.setBuilding(b);
-        r.setRoomNo(request.getRoomNo());
+        r.setStudent(s);
+
+
+        b.setId(Long.valueOf(request.getBuildingNo()));
+        b.setBuildingNo( rTemp.getBuilding().getBuildingNo());
+        b.setLocation( rTemp.getBuilding().getLocation());
+
+        r.setBuilding(b);
+        r.setId(Integer.valueOf(request.getRoomNo()));
+        r.setRoomNo(rTemp.getRoomNo());
+
         data.setRoomNo(r);
-      //  b.addRoom(r);//TODO WHAT IS THIS
-
-
         data.setBuildingNo(b);
-
-
-
-
 
         data.setArrivingDate(request.getArrivingDate());
 
