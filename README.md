@@ -2,7 +2,7 @@
 
 PROBLEM STATEMENT
 
-The main problem and motivation is basically lack of proper record keeping of room applications, delay in approving room requests and inability of student o log complaints and get feedback on time. 
+The main problem and motivation is basically lack of proper record keeping of room applications, delay in approving room requests and inability of student to log complaints and get feedback on time. 
 
 FEATURES OF THE SYSTEM
 
