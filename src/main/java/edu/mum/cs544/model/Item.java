@@ -1,6 +1,8 @@
 package edu.mum.cs544.model;
 
 
+import org.hibernate.validator.constraints.NotBlank;
+
 import javax.persistence.Embeddable;
 
 @Embeddable
@@ -12,7 +14,7 @@ public class Item {
 
 
     private int itemId;
-
+    @NotBlank
     private String itemName;
 
 
@@ -31,17 +33,6 @@ public class Item {
     public void setItemName(String itemName) {
         this.itemName = itemName;
     }
-
-//    public static List<Item> itemList(){
-//        List<Item> itemList = new ArrayList<>();
-//
-//        itemList.add(new Item(1, "Chair"));
-//        itemList.add(new Item(2, "Desk"));
-//        itemList.add(new Item(3, "Wardrob"));
-//        itemList.add(new Item(4, "Bed"));
-//
-//        return itemList;
-//    }
 
 
     public Item(int itemId, String itemName) {

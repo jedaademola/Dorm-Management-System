@@ -1,6 +1,11 @@
 package edu.mum.cs544.model;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import javax.persistence.*;
+import javax.validation.Valid;
+import javax.validation.constraints.Future;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -15,18 +20,22 @@ public class Statement implements Serializable {
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "studentId")
+    @Valid
     private Student student;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "buildingNo")
+    @Valid
     private Building building;
-    //unidirectionals
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "roomNo")
+    @Valid
     private Room roomNo;
 
 
     @ElementCollection
+    @NotNull
     private List<Item> items = new ArrayList<Item>();
 
     //   public List<Item> getItems() {
@@ -34,8 +43,10 @@ public class Statement implements Serializable {
     // }
 
     @Temporal(TemporalType.TIMESTAMP)
+    @Future
     private Date statementDate;
 
+    @NotEmpty
     private String category;
 
     public Statement() {
