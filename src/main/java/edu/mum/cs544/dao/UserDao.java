@@ -2,6 +2,7 @@ package edu.mum.cs544.dao;
 
 
 import edu.mum.cs544.model.AbstractModel;
+import edu.mum.cs544.model.Student;
 import edu.mum.cs544.model.Users;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -33,6 +34,12 @@ public class UserDao extends AbstractDao<AbstractModel> {
         return;
     }
 
+    public <T> T loginUser(String username) {
+        return (T) getSession().createQuery("select s from Person s" +
+                " where s.email =:username")
+                .setParameter("username", username)
+                .uniqueResult();
+    }
 
     public List<Users> getAll() {
         return getSession().createQuery("from Users").list();

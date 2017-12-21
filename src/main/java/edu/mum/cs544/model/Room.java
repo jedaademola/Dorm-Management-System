@@ -12,28 +12,49 @@ public class Room {
 
     @Id
     @GeneratedValue
-    private long id;
+    private int id;
+
     private String roomNo;
+
     @OneToOne
     @JoinColumn(name = "studentId")
+    @Basic(optional = true)
     private Student student;
-    @ManyToOne
-    private Building building;
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
+    }
 
     @ManyToOne
-    @JoinColumn(name="adminId")
-    private Admin admin;
+    @JoinColumn(name = "buildingId")
+    private Building building;
+
+    @OneToOne(mappedBy = "roomNo", cascade=CascadeType.REFRESH)
+    private RoomApplication roomApplications;
+
+    public RoomApplication getRoomApplications() {
+        return roomApplications;
+    }
+
+    public void setRoomApplications(RoomApplication roomApplications) {
+        this.roomApplications = roomApplications;
+    }
 
     //Constructor
     public Room() {
-    }
-    //Getters and Setters
 
-    public long getId() {
+    }
+
+
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -45,13 +66,7 @@ public class Room {
         this.roomNo = roomNo;
     }
 
-    public Student getStudent() {
-        return student;
-    }
 
-    public void setStudent(Student student) {
-        this.student = student;
-    }
 
     public Building getBuilding() {
         return building;
@@ -61,11 +76,11 @@ public class Room {
         this.building = building;
     }
 
-    public Admin getAdmin() {
-        return admin;
-    }
+  //  public Admin getAdmin() {
+   //     return admin;
+ //   }
 
-    public void setAdmin(Admin admin) {
-        this.admin = admin;
-    }
+   // public void setAdmin(Admin admin) {
+   //     this.admin = admin;
+   // }
 }

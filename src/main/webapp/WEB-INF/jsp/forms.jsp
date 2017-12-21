@@ -1,5 +1,9 @@
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <c:set var="cp" value="${pageContext.request.servletContext.contextPath}" scope="request"/>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -10,7 +14,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Startmin - Bootstrap Admin Theme</title>
+    <title>Dorm Management System: Room Application</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="${cp}/css/bootstrap.min.css" rel="stylesheet">
@@ -38,7 +42,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="navbar-header">
-            <a class="navbar-brand" href="index.jsp">Startmin</a>
+            <a class="navbar-brand" href="{cp}/dashboard">Dorm Management System</a>
         </div>
 
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -48,80 +52,7 @@
             <span class="icon-bar"></span>
         </button>
 
-        <ul class="nav navbar-nav navbar-left navbar-top-links">
-            <li><a href="#"><i class="fa fa-home fa-fw"></i> Website</a></li>
-        </ul>
 
-        <ul class="nav navbar-right navbar-top-links">
-            <li class="dropdown navbar-inverse">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                    <i class="fa fa-bell fa-fw"></i> <b class="caret"></b>
-                </a>
-                <ul class="dropdown-menu dropdown-alerts">
-                    <li>
-                        <a href="#">
-                            <div>
-                                <i class="fa fa-comment fa-fw"></i> New Comment
-                                <span class="pull-right text-muted small">4 minutes ago</span>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <div>
-                                <i class="fa fa-twitter fa-fw"></i> 3 New Followers
-                                <span class="pull-right text-muted small">12 minutes ago</span>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <div>
-                                <i class="fa fa-envelope fa-fw"></i> Message Sent
-                                <span class="pull-right text-muted small">4 minutes ago</span>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <div>
-                                <i class="fa fa-tasks fa-fw"></i> New Task
-                                <span class="pull-right text-muted small">4 minutes ago</span>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <div>
-                                <i class="fa fa-upload fa-fw"></i> Server Rebooted
-                                <span class="pull-right text-muted small">4 minutes ago</span>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="divider"></li>
-                    <li>
-                        <a class="text-center" href="#">
-                            <strong>See All Alerts</strong>
-                            <i class="fa fa-angle-right"></i>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-            <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                    <i class="fa fa-user fa-fw"></i> secondtruth <b class="caret"></b>
-                </a>
-                <ul class="dropdown-menu dropdown-user">
-                    <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
-                    </li>
-                    <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
-                    </li>
-                    <li class="divider"></li>
-                    <li><a href="login.jsp"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
-                    </li>
-                </ul>
-            </li>
-        </ul>
         <!-- /.navbar-top-links -->
 
         <div class="navbar-default sidebar" role="navigation">
@@ -139,93 +70,24 @@
                         <!-- /input-group -->
                     </li>
                     <li>
-                        <a href="index.jsp"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                        <a href="${cp}//dashboardStudent"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                    </li>
+
+                    <li>
+                        <a href="${cp}/studentForm"><i class="fa fa-table fa-fw"></i> Apply for Room</a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <a href="flot.html">Flot Charts</a>
-                            </li>
-                            <li>
-                                <a href="morris.html">Morris.js Charts</a>
-                            </li>
-                        </ul>
-                        <!-- /.nav-second-level -->
+                        <a href="${cp}/complaint"><i class="fa fa-edit fa-fw"></i> Log Complaint</a>
                     </li>
                     <li>
-                        <a href="tables.html"><i class="fa fa-table fa-fw"></i> Tables</a>
+                        <a href="${cp}/statement"><i class="fa fa-dashboard fa-fw"></i> Check in/Check out</a>
                     </li>
+
                     <li>
-                        <a href="forms.jsp"><i class="fa fa-edit fa-fw"></i> Forms</a>
+                        <a href="${cp}/logout"><i class="fa fa-dashboard fa-fw"></i> Logout</a>
                     </li>
-                    <li>
-                        <a href="#"><i class="fa fa-wrench fa-fw"></i> UI Elements<span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <a href="panels-wells.html">Panels and Wells</a>
-                            </li>
-                            <li>
-                                <a href="buttons.html">Buttons</a>
-                            </li>
-                            <li>
-                                <a href="notifications.html">Notifications</a>
-                            </li>
-                            <li>
-                                <a href="typography.html">Typography</a>
-                            </li>
-                            <li>
-                                <a href="icons.html"> Icons</a>
-                            </li>
-                            <li>
-                                <a href="grid.html">Grid</a>
-                            </li>
-                        </ul>
-                        <!-- /.nav-second-level -->
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-sitemap fa-fw"></i> Multi-Level Dropdown<span
-                                class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <a href="#">Second Level Item</a>
-                            </li>
-                            <li>
-                                <a href="#">Second Level Item</a>
-                            </li>
-                            <li>
-                                <a href="#">Third Level <span class="fa arrow"></span></a>
-                                <ul class="nav nav-third-level">
-                                    <li>
-                                        <a href="#">Third Level Item</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Third Level Item</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Third Level Item</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Third Level Item</a>
-                                    </li>
-                                </ul>
-                                <!-- /.nav-third-level -->
-                            </li>
-                        </ul>
-                        <!-- /.nav-second-level -->
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-files-o fa-fw"></i> Sample Pages<span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <a href="blank.html">Blank Page</a>
-                            </li>
-                            <li>
-                                <a href="login.jsp">Login Page</a>
-                            </li>
-                        </ul>
-                        <!-- /.nav-second-level -->
-                    </li>
+
+
                 </ul>
             </div>
             <!-- /.sidebar-collapse -->
@@ -236,7 +98,7 @@
     <div id="page-wrapper">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Forms</h1>
+                <h1 class="page-header">Room Application form</h1>
             </div>
             <!-- /.col-lg-12 -->
         </div>
@@ -245,27 +107,64 @@
             <div class="col-lg-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        Basic Form Elements
+                        Please complete the form below:
                     </div>
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-lg-6">
-                                <form role="form">
+<div class="alert alert-success alert-dismissable" style="display:none"
+     id="msgAlert">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <div id="resultsSuccess"></div>
+</div>
+
+<div class="alert alert-danger alert-dismissable" style="display:none"
+     id="msgAlertFailed">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <div id="resultsError"></div>
+</div>
+
+                                <!--div>
+                                    <c:if test="${not empty emr}">
+                                        <c:choose>
+                                            <c:when test="${fn:containsIgnoreCase(emr,'Success')}">
+                                                <font color="green" style='vertical-align: auto'>${emr}</font>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <font color="red" style='vertical-align: auto'>${emr}</font>
+                                            </c:otherwise>
+
+                                        </c:choose>
+
+                                    </c:if>
+                                </div -->
+                                <form:form role="form" id="formRoomApplication">
                                     <div class="form-group">
-                                        <label>Text Input</label>
-                                        <input class="form-control">
-                                        <p class="help-block">Example block-level help text here.</p>
+                                        <label>Building</label>
+                                        <form:select class="form-control" id="buildingId" path="buildingNo">
+                                            <form:options items="${buildings}" itemValue="value" itemLabel="label"/>
+                                        </form:select>
                                     </div>
                                     <div class="form-group">
-                                        <label>Text Input with Placeholder</label>
-                                        <input class="form-control" placeholder="Enter text">
+                                        <label>Room</label>
+                                        <form:select class="form-control" id="roomNo" path="roomNo">
+                                            <form:options items="${rooms}" itemValue="value" itemLabel="label"/>
+                                        </form:select>
                                     </div>
                                     <div class="form-group">
-                                        <label>Static Control</label>
-                                        <p class="form-control-static">email@example.com</p>
+                                        <label>Arrival Date</label>
+                                        <input class="form-control" placeholder="YYYY-MM-DD" id="txtArivalDate">
                                     </div>
 
-                                </form>
+                                    <div class="form-group">
+                                        <button type="button" class="btn btn-outline btn-primary" id="btnApply">Submit
+                                            Application
+                                        </button>
+                                    </div>
+
+
+                                </form:form>
+
                             </div>
                             <!-- /.col-lg-6 (nested) -->
                         </div>
@@ -295,6 +194,73 @@
 
 <!-- Custom Theme JavaScript -->
 <script src="${cp}/js/startmin.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $(document).on("click", "#btnApply", function (e) {
+            btnOperation();
+        });
+
+
+    });
+
+
+    function btnOperation() {
+
+        var jsonRequest = {};
+
+        jsonRequest["roomNo"] = $("#roomNo").val();
+        jsonRequest["buildingNo"] = $("#buildingId").val();
+        jsonRequest["arrivingDate"] = $("#txtArivalDate").val();
+
+         var userJson = JSON.parse(localStorage.getItem("data"));
+         console.log(userJson);
+
+        var param = JSON.stringify(jsonRequest);
+
+        $.ajax({
+                url: "${cp}/api/v1/dorm/student/room/apply",
+                type: "POST",
+                dataType: "json",
+                beforeSend: function (xhr) {
+                     xhr.setRequestHeader("X-Auth-Token", userJson.accessToken);
+                    xhr.setRequestHeader("Accept", "application/json");
+                    xhr.setRequestHeader("Content-Type", "application/json");
+
+                },
+                data: param,
+                success: function (data) {
+
+                    $("#resultsSuccess").html(data.description);
+                    document.getElementById("msgAlert").style.display = '';
+                    document.getElementById("msgAlertFailed").style.display = 'none';
+
+                    setTimeout(
+                        function () {
+                            location.reload();
+                        }, 7000);
+
+
+                }
+                ,
+                error: function (xhr, errorType, exception) {
+
+
+                    document.getElementById("msgAlertFailed").style.display = '';
+                    document.getElementById("msgAlert").style.display = 'none';
+
+                    var responseText = JSON.parse(xhr.responseText);
+
+
+                    $("#resultsError").html(responseText.description);
+
+                }
+            }
+        );
+    }
+
+
+</script>
 
 </body>
 </html>

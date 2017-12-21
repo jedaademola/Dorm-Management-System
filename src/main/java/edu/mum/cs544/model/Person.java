@@ -16,6 +16,26 @@ public abstract class Person implements Serializable {
     private String email;
     private String pword;
 
+    private String password;
+
+    private String category;
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public long getId() {
         return id;
     }
