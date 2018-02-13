@@ -21,6 +21,13 @@ public class DashboardController {
     }
 
 
+    @RequestMapping(value = "/loginAdmin", method = RequestMethod.GET)
+    public ModelAndView loginAdmin(@ModelAttribute("command") LoginRequest loginRequest) {
+        ModelAndView model = new ModelAndView();
+        model.setViewName("loginAdmin");
+        return model;
+    }
+
     @RequestMapping(value = "/signup", method = RequestMethod.GET)
     public ModelAndView signUpForm() {
         ModelAndView model = new ModelAndView();

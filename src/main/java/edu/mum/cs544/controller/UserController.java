@@ -84,11 +84,11 @@ public class UserController {
             }
             if (UserCategory.ADMIN.name().equals(user.getCategory())) {
                 authWithToken = new AuthenticationWithToken(user, null, AuthorityUtils.commaSeparatedStringToAuthorityList("ROLE_ADMIN"));
-                page = "dashboardRA";
+                page = "dashboardAdmin" ;
             }
             if (UserCategory.RA.name().equals(user.getCategory())) {
                 authWithToken = new AuthenticationWithToken(user, null, AuthorityUtils.commaSeparatedStringToAuthorityList("ROLE_RA"));
-                page = "dashboardAdmin";
+                page =  "dashboardRA";
             }
 
             String newToken = this.tokenService.generateNewToken();
@@ -120,7 +120,7 @@ public class UserController {
     public ModelAndView loginAdminUser(@ModelAttribute("command") LoginRequest loginRequest, HttpServletRequest request) throws Exception {
         AuthenticationWithToken authWithToken = null;
         ModelAndView model = new ModelAndView();
-        String page = "login";
+        String page = "loginAdmin";
         Admin user = userService.loginAdminUser(loginRequest.getUsername(), loginRequest.getPassword());
 
         if (user != null) {
