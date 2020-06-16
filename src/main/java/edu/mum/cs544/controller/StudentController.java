@@ -119,7 +119,7 @@ public class StudentController {
 
 
     @RequestMapping(value = "/viewcomplaintstudent", method = RequestMethod.GET)
-  //  @PreAuthorize("hasAnyRole('ROLE_STUDENT')")
+  //  @PreAuthorize("hasAnyRole('ROLE_STUDENT','ROLE_RA')")
     public ModelAndView viewComplaintStudent() {
         ModelAndView model = new ModelAndView();
 

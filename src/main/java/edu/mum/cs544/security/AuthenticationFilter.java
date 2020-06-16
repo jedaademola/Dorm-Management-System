@@ -5,7 +5,6 @@ package edu.mum.cs544.security;
  */
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.common.base.Optional;
 import com.google.common.base.Strings;
 import edu.mum.cs544.model.Response;
 import org.slf4j.Logger;
@@ -27,6 +26,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Optional;
 
 public class AuthenticationFilter extends GenericFilterBean {
 
@@ -44,7 +44,7 @@ public class AuthenticationFilter extends GenericFilterBean {
         HttpServletRequest httpRequest = asHttp(request);
         HttpServletResponse httpResponse = asHttp(response);
 
-        Optional<String> token = Optional.fromNullable(httpRequest.getHeader("X-Auth-Token"));
+        Optional<String> token = Optional.ofNullable(httpRequest.getHeader("X-Auth-Token"));
 
         try {
 
